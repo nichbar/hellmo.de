@@ -1,27 +1,45 @@
 {
-  "updatedAt": "2026-11-18T10:02:38.280Z",
+  "updatedAt": "2026-11-18T19:48:25.940Z",
   "username": "nichbar",
   "primary": {
-    "trackName": "Set Fire to the Rain",
-    "artistName": "Adele",
-    "albumName": "21",
+    "trackName": "Polyethylene (Pts. 1 & 2)",
+    "artistName": "Radiohead",
+    "albumName": "OK Computer",
     "nowPlaying": false,
-    "playedUts": 1794995932,
-    "trackUrl": "https://www.last.fm/music/Adele/_/Set+Fire+to+the+Rain",
-    "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7694508c2aa520df08bb8e6248bfedf0.png"
+    "playedUts": 1794996948,
+    "trackUrl": "https://www.last.fm/music/Radiohead/_/Polyethylene+(Pts.+1+&+2)",
+    "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/62d26c6cb4ac4bdccb8f3a2a0fd55421.png"
   },
   "albums": [
+    {
+      "albumName": "OK Computer",
+      "artistName": "Radiohead",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/62d26c6cb4ac4bdccb8f3a2a0fd55421.png",
+      "url": "https://www.last.fm/music/Radiohead/_/Polyethylene+(Pts.+1+&+2)"
+    },
+    {
+      "albumName": "Led Zeppelin IV (Remaster)",
+      "artistName": "Led Zeppelin",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9a2226ad18aa11629db1e8f2f306a43a.gif",
+      "url": "https://www.last.fm/music/Led+Zeppelin/_/Rock+And+Roll+(remaster)"
+    },
+    {
+      "albumName": "Fear and Love",
+      "artistName": "We Shot the Moon",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1278e01672b44597a8306705ad66493b.jpg",
+      "url": "https://www.last.fm/music/We+Shot+the+Moon/_/Please+Shine"
+    },
+    {
+      "albumName": "Good Girl Gone Bad: Reloaded",
+      "artistName": "Rihanna",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/784567e7fa05204d6b03da80b96ed3a9.png",
+      "url": "https://www.last.fm/music/Rihanna/_/Don%27t+Stop+the+Music"
+    },
     {
       "albumName": "21",
       "artistName": "Adele",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7694508c2aa520df08bb8e6248bfedf0.png",
       "url": "https://www.last.fm/music/Adele/_/Set+Fire+to+the+Rain"
-    },
-    {
-      "albumName": "OK Computer",
-      "artistName": "Radiohead",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/62d26c6cb4ac4bdccb8f3a2a0fd55421.png",
-      "url": "https://www.last.fm/music/Radiohead/_/Karma+Police"
     },
     {
       "albumName": "Full Moon Fever",
