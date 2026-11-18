@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>hellmo.de — nichbar</title>
+    <meta
+      name="description"
+      content="hellmo.de — Live album cover wallpaper wall powered by nichbar's most recent Last.fm listen, with GitHub profile info."
+    />
+    <link rel="canonical" href="https://hellmo.de/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hellmo.de/" />
+    <meta property="og:title" content="hellmo.de — nichbar" />
+    <meta
+      property="og:description"
+      content="Live Last.fm album cover wallpaper wall for nichbar."
+    />
+    <link
+      id="dynamic-favicon"
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2309090b'/%3E%3Ccircle cx='32' cy='32' r='20' fill='none' stroke='%23fafafa' stroke-width='3'/%3E%3Ccircle cx='32' cy='32' r='6' fill='%23fafafa'/%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="wallpaper-stage" class="wallpaper-stage is-drifting" aria-label="Live album cover wallpaper wall">
+      <div id="ambient-backdrop" class="ambient-backdrop" aria-hidden="true"></div>
+      <div id="wallpaper-grid-a" class="wallpaper-grid is-active" aria-hidden="true"></div>
+      <div id="wallpaper-grid-b" class="wallpaper-grid" aria-hidden="true"></div>
+      <div class="vignette-overlay" aria-hidden="true"></div>
+    </main>
+
+    <div id="hud-container" class="hud-container">
+      <section class="hud-card hud-music" aria-label="Most recent Last.fm listen">
+        <a
+          id="hud-cover-link"
+          class="hud-music__cover-wrap"
+          href="https://www.last.fm/user/nichbar"
+          target="_blank"
+          rel="noopener noreferrer"
+          title="View on Last.fm"
+        >
+          <img
+            id="hud-cover"
+            class="hud-music__cover"
+            src=""
+            alt="Most recent album cover"
+            width="56"
+            height="56"
+          />
+        </a>
+
+        <div class="hud-music__body">
+          <div class="hud-music__status">
+            <span id="hud-status-dot" class="status-dot" aria-hidden="true"></span>
+            <span id="hud-status-label">LOADING</span>
+            <span class="hud-sep" aria-hidden="true">·</span>
+            <a
+              id="hud-lastfm-link"
+              class="hud-inline-link"
+              href="https://www.last.fm/user/nichbar"
+              target="_blank"
+              rel="noopener noreferrer"
+              >last.fm/user/nichbar</a
+            >
+          </div>
+          <div id="hud-track" class="hud-music__track">Loading recent listen…</div>
+          <div id="hud-meta" class="hud-music__meta">Fetching from Last.fm</div>
+        </div>
+
+        <div class="hud-controls" role="group" aria-label="Wallpaper controls">
+          <button
+            id="btn-tile-smaller"
+            class="icon-btn"
+            type="button"
+            title="Smaller tiles"
+            aria-label="Make wallpaper tiles smaller"
+          >
+            −
+          </button>
+          <button
+            id="btn-tile-larger"
+            class="icon-btn"
+            type="button"
+            title="Larger tiles"
+            aria-label="Make wallpaper tiles larger"
+          >
+            +
+          </button>
+          <button
+            id="btn-toggle-motion"
+            class="icon-btn is-pressed"
+            type="button"
+            title="Toggle ambient motion"
+            aria-label="Toggle ambient motion"
+            aria-pressed="true"
+          >
+            ≈
+          </button>
+          <button
+            id="btn-refresh"
+            class="icon-btn"
+            type="button"
+            title="Refresh now"
+            aria-label="Refresh Last.fm track"
+          >
+            ↻
+          </button>
+          <button
+            id="btn-hide-hud"
+            class="icon-btn"
+            type="button"
+            title="Hide HUD (press H to toggle)"
+            aria-label="Hide corner HUD"
+          >
+            ◫
+          </button>
+        </div>
+      </section>
+
+      <section class="hud-card hud-profile" aria-label="Site and GitHub profile info">
+        <div class="hud-profile__top">
+          <span class="site-pill">hellmo.de</span>
+          <span id="gh-meta" class="hud-profile__stats">Dalvik · 47 repos</span>
+        </div>
+        <div class="hud-profile__main">
+          <img
+            id="gh-avatar"
+            class="hud-profile__avatar"
+            src="https://avatars.githubusercontent.com/u/7713080?v=4"
+            alt="nichbar GitHub avatar"
+            width="40"
+            height="40"
+          />
+          <div class="hud-profile__info">
+            <div class="hud-profile__name-row">
+              <strong id="gh-name" class="hud-profile__name">Nich</strong>
+              <span id="gh-handle" class="hud-profile__handle">@nichbar</span>
+            </div>
+            <p id="gh-bio" class="hud-profile__bio">Newtype</p>
+          </div>
+          <a
+            id="hud-github-link"
+            class="github-btn"
+            href="https://www.github.com/nichbar"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              class="github-btn__icon"
+              viewBox="0 0 16 16"
+              width="15"
+              height="15"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"
+              />
+            </svg>
+            <span>GitHub</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <button
+      id="hud-restore-btn"
+      class="hud-restore-btn"
+      type="button"
+      hidden
+      title="Show HUD (H)"
+      aria-label="Show corner HUD"
+    >
+      hellmo.de · Show HUD
+    </button>
+
+    <script defer src="config.js"></script>
+    <script defer src="app.js"></script>
+  </body>
+</html>
