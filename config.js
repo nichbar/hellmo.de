@@ -9,7 +9,7 @@
     githubUrl: 'https://www.github.com/nichbar',
     // Polls the local static JSON (never calls Last.fm API directly)
     pollIntervalMs: 300000,
-    tileTargetSizePx: 220,
+    tileTargetSizePx: 140,
     ambientDrift: true,
   };
 

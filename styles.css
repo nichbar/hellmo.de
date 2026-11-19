@@ -2,7 +2,7 @@
   --bg: #09090b;
   --accent: #a1a1aa;
   --accent-rgb: 161, 161, 170;
-  --tile-size: 220px;
+  --tile-size: 140px;
   --hud-bg: rgba(10, 10, 14, 0.72);
   --hud-bg-hover: rgba(16, 16, 22, 0.84);
   --hud-border: rgba(255, 255, 255, 0.13);
@@ -72,41 +72,26 @@ input {
   position: absolute;
   top: 50%;
   left: 50%;
-  display: grid;
-  gap: 0;
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: transform, opacity;
+  will-change: opacity;
 }
 
 .wallpaper-grid.is-active {
   opacity: 1;
 }
 
-.wallpaper-stage.is-drifting .wallpaper-grid.is-active {
-  animation: wallDrift 36s ease-in-out infinite alternate;
-}
-
-@keyframes wallDrift {
-  0% {
-    transform: translate(calc(-50% - 18px), calc(-50% - 14px));
-  }
-  50% {
-    transform: translate(calc(-50% + 14px), calc(-50% - 8px));
-  }
-  100% {
-    transform: translate(calc(-50% + 18px), calc(-50% + 16px));
-  }
-}
-
 .wall-tile {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: var(--tile-size);
+  height: var(--tile-size);
   overflow: hidden;
   background: rgba(24, 24, 27, 0.9);
+  will-change: transform;
 }
 
 .wall-tile::after {
@@ -194,8 +179,8 @@ input {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 10px 12px;
-  max-width: min(460px, 100%);
+  padding: 10px 14px 10px 10px;
+  max-width: min(420px, 100%);
   min-width: 0;
 }
 
@@ -269,7 +254,7 @@ input {
 }
 
 .hud-inline-link {
-  color: var(--text-secondary);
+  color: inherit;
   transition: color 0.2s ease;
 }
 
@@ -277,6 +262,12 @@ input {
   color: var(--text-primary);
   text-decoration: underline;
   text-underline-offset: 2px;
+}
+
+.hud-owner-link {
+  text-transform: none;
+  color: var(--text-primary);
+  font-weight: 600;
 }
 
 .hud-music__track {
@@ -301,7 +292,7 @@ input {
 }
 
 .hud-controls {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 4px;
   flex: 0 0 auto;
@@ -507,7 +498,6 @@ input {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .wallpaper-stage.is-drifting .wallpaper-grid.is-active,
   .status-dot.is-live {
     animation: none !important;
   }

@@ -14,6 +14,7 @@ test('config.js defines expected domain, snapshot path, and profile defaults', (
   assert.equal(config.githubUsername, 'nichbar');
   assert.equal(config.githubUrl, 'https://www.github.com/nichbar');
   assert.equal(config.lastfmProfileUrl, 'https://www.last.fm/user/nichbar');
+  assert.equal(config.tileTargetSizePx, 140);
   assert.equal('lastfmApiKey' in config, false);
 });
 
@@ -278,11 +279,66 @@ test('parseRecentTracks throws on Last.fm API error object', () => {
 });
 
 test('computeGridDimensions overscans viewport for seamless drift coverage', () => {
-  const dims = app.computeGridDimensions(1440, 900, 220);
+  const dims = app.computeGridDimensions(1440, 900, 140);
   assert.ok(dims.gridWidth > 1440);
   assert.ok(dims.gridHeight > 900);
   assert.equal(dims.totalTiles, dims.cols * dims.rows);
   assert.ok(dims.tileSize >= 96);
+});
+
+test('buildTileMatrix and stepGridMatrix shift a single row or column with wrap-around', () => {
+  const albums = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'].map((id) => ({
+    albumName: id,
+    artistName: id,
+    imageUrl: `https://img.example/${id}.jpg`,
+  }));
+
+  const matrix = [
+    [albums[0], albums[1], albums[2]],
+    [albums[3], albums[4], albums[5]],
+    [albums[6], albums[7], albums[8]],
+  ];
+
+  // Row 1 slides right by 1: [D, E, F] -> [F, D, E]
+  const rowRight = app.stepGridMatrix(matrix, 'row', 1, 1);
+  assert.deepEqual(
+    rowRight[1].map((a) => a.albumName),
+    ['F', 'D', 'E']
+  );
+  // Other rows stay unchanged
+  assert.deepEqual(
+    rowRight[0].map((a) => a.albumName),
+    ['A', 'B', 'C']
+  );
+
+  // Column 1 slides up by 1 (-1): [B, D, H] -> [D, H, B]
+  const colUp = app.stepGridMatrix(rowRight, 'col', 1, -1);
+  assert.deepEqual(
+    [colUp[0][1].albumName, colUp[1][1].albumName, colUp[2][1].albumName],
+    ['D', 'H', 'B']
+  );
+  // Original matrix is not mutated
+  assert.equal(matrix[1][0].albumName, 'D');
+
+  const built = app.buildTileMatrix(albums, 3, 3);
+  assert.equal(built.length, 3);
+  assert.equal(built[0].length, 3);
+});
+
+test('pickRandomLineSlide chooses valid interior lines when overscan is present and non-zero delta', () => {
+  let step = 0;
+  const values = [0.1, 0.5, 0.2, 0.9, 0.8, 0.4, 0.7, 0.1];
+  const rng = () => values[step++ % values.length];
+
+  const rowMove = app.pickRandomLineSlide(6, 8, rng);
+  assert.equal(rowMove.axis, 'row');
+  assert.ok(rowMove.index >= 1 && rowMove.index <= 4);
+  assert.ok(rowMove.delta === -2 || rowMove.delta === -1 || rowMove.delta === 1 || rowMove.delta === 2);
+
+  const colMove = app.pickRandomLineSlide(6, 8, rng);
+  assert.equal(colMove.axis, 'col');
+  assert.ok(colMove.index >= 1 && colMove.index <= 6);
+  assert.ok(colMove.delta === -2 || colMove.delta === -1 || colMove.delta === 1 || colMove.delta === 2);
 });
 
 test('resolveApiKey checks query string, storage, then config and ignores placeholder', () => {

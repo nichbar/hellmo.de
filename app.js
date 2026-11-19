@@ -228,7 +228,7 @@
   function computeGridDimensions(viewportWidth, viewportHeight, targetSizePx) {
     const safeWidth = Math.max(320, Number(viewportWidth) || 1280);
     const safeHeight = Math.max(240, Number(viewportHeight) || 720);
-    const clampedTarget = Math.min(400, Math.max(96, Number(targetSizePx) || 220));
+    const clampedTarget = Math.min(400, Math.max(96, Number(targetSizePx) || 140));
 
     const visibleCols = Math.max(2, Math.round(safeWidth / clampedTarget));
     const tileSize = Math.ceil(safeWidth / visibleCols);
@@ -443,6 +443,82 @@
     };
   }
 
+  function pickRandomLineSlide(rows, cols, rng) {
+    const safeRows = Math.max(1, Number(rows) || 1);
+    const safeCols = Math.max(1, Number(cols) || 1);
+    const rand = typeof rng === 'function' ? rng : Math.random;
+
+    let axis;
+    if (safeRows <= 1 && safeCols <= 1) {
+      return { axis: 'row', index: 0, delta: 0 };
+    }
+    if (safeRows <= 1) {
+      axis = 'row';
+    } else if (safeCols <= 1) {
+      axis = 'col';
+    } else {
+      axis = rand() < 0.5 ? 'row' : 'col';
+    }
+
+    const lineCount = axis === 'row' ? safeRows : safeCols;
+    // Prefer visible interior lines (1 .. lineCount - 2) when overscan exists so slides are clearly seen
+    const hasOverscan = lineCount >= 4;
+    const minIdx = hasOverscan ? 1 : 0;
+    const maxExclusive = hasOverscan ? lineCount - 1 : lineCount;
+    const index =
+      minIdx + Math.floor(rand() * Math.max(1, maxExclusive - minIdx));
+
+    const direction = rand() < 0.5 ? -1 : 1;
+    const maxStep = Math.max(1, Math.min(2, lineCount - 1));
+    const magnitude = maxStep >= 2 && rand() >= 0.72 ? 2 : 1;
+    return {
+      axis,
+      index,
+      delta: direction * magnitude,
+    };
+  }
+
+  function stepGridMatrix(matrix, axis, lineIndex, delta) {
+    if (!Array.isArray(matrix) || matrix.length === 0) return [];
+    const rows = matrix.length;
+    const cols = Array.isArray(matrix[0]) ? matrix[0].length : 0;
+    if (cols === 0) return matrix.map((row) => [...row]);
+
+    const next = matrix.map((row) => [...row]);
+    const steps = Number(delta) || 0;
+    if (steps === 0) return next;
+
+    if (axis === 'row') {
+      const r = ((lineIndex % rows) + rows) % rows;
+      const shift = ((steps % cols) + cols) % cols;
+      for (let c = 0; c < cols; c += 1) {
+        const targetCol = (c + shift) % cols;
+        next[r][targetCol] = matrix[r][c];
+      }
+    } else if (axis === 'col') {
+      const c = ((lineIndex % cols) + cols) % cols;
+      const shift = ((steps % rows) + rows) % rows;
+      for (let r = 0; r < rows; r += 1) {
+        const targetRow = (r + shift) % rows;
+        next[targetRow][c] = matrix[r][c];
+      }
+    }
+
+    return next;
+  }
+
+  function buildTileMatrix(albums, cols, rows) {
+    const flat = buildTileAssignments(albums, cols, rows);
+    const safeCols = Math.max(1, Number(cols) || 1);
+    const safeRows = Math.max(1, Number(rows) || 1);
+    if (flat.length === 0) return [];
+    const matrix = [];
+    for (let r = 0; r < safeRows; r += 1) {
+      matrix.push(flat.slice(r * safeCols, (r + 1) * safeCols));
+    }
+    return matrix;
+  }
+
   const exported = {
     LASTFM_PLACEHOLDER_HASH,
     isValidAlbumArtUrl,
@@ -453,6 +529,9 @@
     parseTopAlbums,
     mergeAlbumPools,
     buildTileAssignments,
+    buildTileMatrix,
+    stepGridMatrix,
+    pickRandomLineSlide,
     computeGridDimensions,
     resolveApiKey,
     formatRelativeTime,
@@ -483,7 +562,7 @@
       githubUsername: 'nichbar',
       githubUrl: 'https://www.github.com/nichbar',
       pollIntervalMs: 300000,
-      tileTargetSizePx: 220,
+      tileTargetSizePx: 140,
       ambientDrift: true,
     },
     global.HELLMO_CONFIG || {}
@@ -545,6 +624,11 @@
     }
   }
 
+  const SLIDE_INITIAL_DELAY_MS = 650;
+  const SLIDE_INTERVAL_MS = 2200;
+  const SLIDE_DURATION_MS = 1400;
+  const SLIDE_EASING = 'cubic-bezier(0.22, 1, 0.36, 1)';
+
   const state = {
     apiKey: resolveApiKey(config, window.location.search, window.localStorage),
     activeGridKey: 'a',
@@ -560,6 +644,15 @@
     ambientDrift: readBoolStorage(STORAGE_KEYS.motion, config.ambientDrift),
     hudHidden: readBoolStorage(STORAGE_KEYS.hudHidden, false),
     pollTimerId: null,
+    slideInitialTimerId: null,
+    slideTimerId: null,
+    slideFinishTimerId: null,
+    pendingExitingTiles: [],
+    isSliding: false,
+    gridBoards: {
+      a: null,
+      b: null,
+    },
     lastTrack: null,
   };
 
@@ -567,6 +660,11 @@
     els.stage.classList.toggle('is-drifting', state.ambientDrift);
     els.btnMotion.classList.toggle('is-pressed', state.ambientDrift);
     els.btnMotion.setAttribute('aria-pressed', String(state.ambientDrift));
+    if (state.ambientDrift) {
+      startSlideLoop();
+    } else {
+      stopSlideLoop();
+    }
   }
 
   function applyHudVisibility() {
@@ -574,37 +672,205 @@
     els.hudRestoreBtn.hidden = !state.hudHidden;
   }
 
-  function populateGrid(gridEl, albums) {
+  function createTileElement(album, row, col, tileSize) {
+    const tile = document.createElement('div');
+    tile.className = 'wall-tile';
+    tile.style.transform = `translate3d(${col * tileSize}px, ${row * tileSize}px, 0)`;
+
+    const img = document.createElement('img');
+    img.src = album.imageUrl;
+    img.alt = `${album.albumName} by ${album.artistName}`;
+    img.decoding = 'async';
+    img.draggable = false;
+
+    tile.appendChild(img);
+    return tile;
+  }
+
+  function populateGrid(gridEl, gridKey, albums) {
     const dims = computeGridDimensions(
       window.innerWidth,
       window.innerHeight,
       state.tileTargetSizePx
     );
-    const assignments = buildTileAssignments(albums, dims.cols, dims.rows);
+    const tileMatrix = buildTileMatrix(albums, dims.cols, dims.rows);
 
     document.documentElement.style.setProperty('--tile-size', `${dims.tileSize}px`);
     gridEl.style.width = `${dims.gridWidth}px`;
     gridEl.style.height = `${dims.gridHeight}px`;
-    gridEl.style.gridTemplateColumns = `repeat(${dims.cols}, ${dims.tileSize}px)`;
-    gridEl.style.gridTemplateRows = `repeat(${dims.rows}, ${dims.tileSize}px)`;
 
+    const domMatrix = [];
     const fragment = document.createDocumentFragment();
-    for (let i = 0; i < assignments.length; i += 1) {
-      const album = assignments[i];
-      const tile = document.createElement('div');
-      tile.className = 'wall-tile';
-
-      const img = document.createElement('img');
-      img.src = album.imageUrl;
-      img.alt = `${album.albumName} by ${album.artistName}`;
-      img.decoding = 'async';
-      img.draggable = false;
-
-      tile.appendChild(img);
-      fragment.appendChild(tile);
+    for (let r = 0; r < dims.rows; r += 1) {
+      const domRow = [];
+      for (let c = 0; c < dims.cols; c += 1) {
+        const album = tileMatrix[r][c];
+        const tile = createTileElement(album, r, c, dims.tileSize);
+        domRow.push(tile);
+        fragment.appendChild(tile);
+      }
+      domMatrix.push(domRow);
     }
 
     gridEl.replaceChildren(fragment);
+    state.gridBoards[gridKey] = {
+      dims,
+      domMatrix,
+      albumMatrix: tileMatrix,
+    };
+  }
+
+  function stopSlideLoop() {
+    if (state.slideInitialTimerId !== null) {
+      clearTimeout(state.slideInitialTimerId);
+      state.slideInitialTimerId = null;
+    }
+    if (state.slideTimerId !== null) {
+      clearInterval(state.slideTimerId);
+      state.slideTimerId = null;
+    }
+    if (state.slideFinishTimerId !== null) {
+      clearTimeout(state.slideFinishTimerId);
+      state.slideFinishTimerId = null;
+    }
+    if (state.pendingExitingTiles.length > 0) {
+      for (const tile of state.pendingExitingTiles) {
+        tile.remove();
+      }
+      state.pendingExitingTiles = [];
+    }
+    state.isSliding = false;
+  }
+
+  function startSlideLoop() {
+    stopSlideLoop();
+    if (!state.ambientDrift) return;
+    state.slideInitialTimerId = window.setTimeout(() => {
+      state.slideInitialTimerId = null;
+      if (!document.hidden) {
+        performRandomLineSlide();
+      }
+      state.slideTimerId = window.setInterval(() => {
+        if (!document.hidden) {
+          performRandomLineSlide();
+        }
+      }, SLIDE_INTERVAL_MS);
+    }, SLIDE_INITIAL_DELAY_MS);
+  }
+
+  function performRandomLineSlide() {
+    if (!state.ambientDrift || state.isSliding) return;
+    const board = state.gridBoards[state.activeGridKey];
+    if (!board || !board.domMatrix || board.domMatrix.length === 0) return;
+
+    const { rows, cols, tileSize } = board.dims;
+    if (rows < 2 || cols < 2) return;
+
+    const move = pickRandomLineSlide(rows, cols);
+    if (!move || move.delta === 0) return;
+
+    const lineLength = move.axis === 'row' ? cols : rows;
+    const clampedDelta =
+      Math.sign(move.delta) * Math.min(lineLength - 1, Math.abs(move.delta));
+    if (clampedDelta === 0) return;
+
+    state.isSliding = true;
+
+    const gridEl = state.activeGridKey === 'a' ? els.gridA : els.gridB;
+    const nextDomMatrix = board.domMatrix.map((row) => [...row]);
+    const nextAlbumMatrix = stepGridMatrix(
+      board.albumMatrix,
+      move.axis,
+      move.index,
+      clampedDelta
+    );
+
+    const enteringTiles = [];
+    const exitingTiles = [];
+    const absDelta = Math.abs(clampedDelta);
+
+    if (move.axis === 'row') {
+      const r = move.index;
+
+      // Animate all existing tiles in this row cleanly along X; any tile leaving the grid
+      // exits across the far edge while a matching clone enters from the opposite edge.
+      for (let c = 0; c < cols; c += 1) {
+        const tile = board.domMatrix[r][c];
+        const targetCol = c + clampedDelta;
+        tile.style.transition = `transform ${SLIDE_DURATION_MS}ms ${SLIDE_EASING}`;
+        tile.style.transform = `translate3d(${targetCol * tileSize}px, ${r * tileSize}px, 0)`;
+
+        if (targetCol < 0 || targetCol >= cols) {
+          exitingTiles.push(tile);
+        } else {
+          nextDomMatrix[r][targetCol] = tile;
+        }
+      }
+
+      // Spawn clones just outside the entry edge for the wrapped-around slots
+      for (let step = 0; step < absDelta; step += 1) {
+        const startCol = clampedDelta > 0 ? -absDelta + step : cols + step;
+        const finalCol = ((startCol + clampedDelta) % cols + cols) % cols;
+        const sourceCol = ((finalCol - clampedDelta) % cols + cols) % cols;
+        const album = board.albumMatrix[r][sourceCol];
+        const clone = createTileElement(album, r, startCol, tileSize);
+        clone.style.transition = 'none';
+        gridEl.appendChild(clone);
+        enteringTiles.push({ tile: clone, finalRow: r, finalCol });
+        nextDomMatrix[r][finalCol] = clone;
+      }
+    } else {
+      const c = move.index;
+
+      for (let r = 0; r < rows; r += 1) {
+        const tile = board.domMatrix[r][c];
+        const targetRow = r + clampedDelta;
+        tile.style.transition = `transform ${SLIDE_DURATION_MS}ms ${SLIDE_EASING}`;
+        tile.style.transform = `translate3d(${c * tileSize}px, ${targetRow * tileSize}px, 0)`;
+
+        if (targetRow < 0 || targetRow >= rows) {
+          exitingTiles.push(tile);
+        } else {
+          nextDomMatrix[targetRow][c] = tile;
+        }
+      }
+
+      for (let step = 0; step < absDelta; step += 1) {
+        const startRow = clampedDelta > 0 ? -absDelta + step : rows + step;
+        const finalRow = ((startRow + clampedDelta) % rows + rows) % rows;
+        const sourceRow = ((finalRow - clampedDelta) % rows + rows) % rows;
+        const album = board.albumMatrix[sourceRow][c];
+        const clone = createTileElement(album, startRow, c, tileSize);
+        clone.style.transition = 'none';
+        gridEl.appendChild(clone);
+        enteringTiles.push({ tile: clone, finalRow, finalCol: c });
+        nextDomMatrix[finalRow][c] = clone;
+      }
+    }
+
+    if (enteringTiles.length > 0) {
+      // Force layout so entering clones animate from their off-edge start coordinates
+      void gridEl.offsetWidth;
+      for (const item of enteringTiles) {
+        item.tile.style.transition = `transform ${SLIDE_DURATION_MS}ms ${SLIDE_EASING}`;
+        item.tile.style.transform = `translate3d(${item.finalCol * tileSize}px, ${
+          item.finalRow * tileSize
+        }px, 0)`;
+      }
+    }
+
+    board.domMatrix = nextDomMatrix;
+    board.albumMatrix = nextAlbumMatrix;
+    state.pendingExitingTiles = exitingTiles;
+
+    state.slideFinishTimerId = window.setTimeout(() => {
+      for (const tile of exitingTiles) {
+        tile.remove();
+      }
+      state.pendingExitingTiles = [];
+      state.isSliding = false;
+      state.slideFinishTimerId = null;
+    }, SLIDE_DURATION_MS + 40);
   }
 
   function preloadImage(url, timeoutMs) {
@@ -722,18 +988,22 @@
         albums.slice(0, 8).map((album) => preloadImage(album.imageUrl, 3000))
       );
 
+      stopSlideLoop();
       const nextKey = state.activeGridKey === 'a' ? 'b' : 'a';
       const incoming = nextKey === 'a' ? els.gridA : els.gridB;
       const outgoing = nextKey === 'a' ? els.gridB : els.gridA;
 
-      populateGrid(incoming, albums);
+      populateGrid(incoming, nextKey, albums);
       void incoming.offsetWidth;
       incoming.classList.add('is-active');
       outgoing.classList.remove('is-active');
       state.activeGridKey = nextKey;
+      startSlideLoop();
     } else {
+      stopSlideLoop();
       const activeGrid = state.activeGridKey === 'a' ? els.gridA : els.gridB;
-      populateGrid(activeGrid, albums);
+      populateGrid(activeGrid, state.activeGridKey, albums);
+      startSlideLoop();
     }
   }
 
@@ -975,8 +1245,12 @@
   }
 
   async function hydrateGitHubProfile() {
-    els.ghLink.href = config.githubUrl;
-    els.hudLastfmLink.href = config.lastfmProfileUrl;
+    if (els.ghLink) els.ghLink.href = config.githubUrl;
+    if (els.hudLastfmLink) els.hudLastfmLink.href = config.lastfmProfileUrl;
+
+    if (!els.ghAvatar && !els.ghName && !els.ghHandle && !els.ghBio && !els.ghMeta) {
+      return;
+    }
 
     const cacheKey = `hellmo_gh_profile_${config.githubUsername}`;
     let profile = null;
@@ -1016,14 +1290,14 @@
 
     if (!profile) return;
 
-    if (profile.avatar_url) els.ghAvatar.src = profile.avatar_url;
-    if (profile.name || profile.login) {
+    if (profile.avatar_url && els.ghAvatar) els.ghAvatar.src = profile.avatar_url;
+    if ((profile.name || profile.login) && els.ghName) {
       els.ghName.textContent = profile.name || profile.login;
     }
-    if (profile.login) {
+    if (profile.login && els.ghHandle) {
       els.ghHandle.textContent = `@${profile.login}`;
     }
-    if (profile.bio) {
+    if (profile.bio && els.ghBio) {
       els.ghBio.textContent = profile.bio;
     }
     const metaParts = [];
@@ -1031,7 +1305,7 @@
     if (typeof profile.public_repos === 'number') {
       metaParts.push(`${profile.public_repos} repos`);
     }
-    if (metaParts.length > 0) {
+    if (metaParts.length > 0 && els.ghMeta) {
       els.ghMeta.textContent = metaParts.join(' · ');
     }
   }
