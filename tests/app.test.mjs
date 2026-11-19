@@ -286,6 +286,27 @@ test('computeGridDimensions overscans viewport for seamless drift coverage', () 
   assert.ok(dims.tileSize >= 96);
 });
 
+test('computeGridDimensions ensures at least 4 visible columns and 4 visible rows on mobile', () => {
+  const portrait = app.computeGridDimensions(390, 844, 140);
+  assert.ok(portrait.cols - 2 >= 4);
+  assert.ok(portrait.rows - 2 >= 4);
+  assert.ok((portrait.cols - 2) * portrait.tileSize >= 390);
+  assert.ok(portrait.gridWidth > 390);
+  assert.ok(portrait.gridHeight > 844);
+
+  const portraitLegacyTarget = app.computeGridDimensions(375, 667, 220);
+  assert.equal(portraitLegacyTarget.cols - 2, 4);
+  assert.ok(portraitLegacyTarget.rows - 2 >= 4);
+  assert.ok(portraitLegacyTarget.tileSize <= 96);
+
+  const landscape = app.computeGridDimensions(844, 390, 140);
+  assert.ok(landscape.cols - 2 >= 4);
+  assert.ok(landscape.rows - 2 >= 4);
+  assert.ok(4 * landscape.tileSize <= 390);
+  assert.ok(landscape.gridWidth > 844);
+  assert.ok(landscape.gridHeight > 390);
+});
+
 test('buildTileMatrix and stepGridMatrix shift a single row or column with wrap-around', () => {
   const albums = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'].map((id) => ({
     albumName: id,

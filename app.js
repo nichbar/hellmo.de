@@ -229,10 +229,19 @@
     const safeWidth = Math.max(320, Number(viewportWidth) || 1280);
     const safeHeight = Math.max(240, Number(viewportHeight) || 720);
     const clampedTarget = Math.min(400, Math.max(96, Number(targetSizePx) || 140));
+    const minVisibleCols = 4;
+    const minVisibleRows = 4;
 
-    const visibleCols = Math.max(2, Math.round(safeWidth / clampedTarget));
-    const tileSize = Math.ceil(safeWidth / visibleCols);
-    const visibleRows = Math.max(2, Math.ceil(safeHeight / tileSize));
+    let visibleCols = Math.max(minVisibleCols, Math.round(safeWidth / clampedTarget));
+    let tileSize = Math.ceil(safeWidth / visibleCols);
+
+    const maxTileForRows = Math.max(1, Math.floor(safeHeight / minVisibleRows));
+    if (tileSize > maxTileForRows) {
+      visibleCols = Math.max(minVisibleCols, Math.ceil(safeWidth / maxTileForRows));
+      tileSize = Math.ceil(safeWidth / visibleCols);
+    }
+
+    const visibleRows = Math.max(minVisibleRows, Math.ceil(safeHeight / tileSize));
 
     const cols = visibleCols + 2;
     const rows = visibleRows + 2;
