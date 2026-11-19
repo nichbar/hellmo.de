@@ -10,6 +10,7 @@
     // Polls the local static JSON (never calls Last.fm API directly)
     pollIntervalMs: 300000,
     tileTargetSizePx: 140,
+    mobileTileTargetSizePx: 80,
     ambientDrift: true,
   };
 

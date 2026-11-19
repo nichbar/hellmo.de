@@ -15,6 +15,7 @@ test('config.js defines expected domain, snapshot path, and profile defaults', (
   assert.equal(config.githubUrl, 'https://www.github.com/nichbar');
   assert.equal(config.lastfmProfileUrl, 'https://www.last.fm/user/nichbar');
   assert.equal(config.tileTargetSizePx, 140);
+  assert.equal(config.mobileTileTargetSizePx, 80);
   assert.equal('lastfmApiKey' in config, false);
 });
 
@@ -276,6 +277,22 @@ test('parseRecentTracks throws on Last.fm API error object', () => {
     () => app.parseRecentTracks({ error: 10, message: 'Invalid API key' }),
     (err) => err.code === 10 && /Invalid API key/.test(err.message)
   );
+});
+
+test('resolveTileTargetSize uses 80px on portrait mobile and desktop target otherwise', () => {
+  assert.equal(app.resolveTileTargetSize(390, 844, 140, 80), 80);
+  assert.equal(app.resolveTileTargetSize(375, 667, 140, 80), 80);
+  assert.equal(app.resolveTileTargetSize(430, 932, 140, 80), 80);
+  assert.equal(app.resolveTileTargetSize(844, 390, 140, 80), 140);
+  assert.equal(app.resolveTileTargetSize(1440, 900, 140, 80), 140);
+
+  const mobileDims = app.computeGridDimensions(
+    390,
+    844,
+    app.resolveTileTargetSize(390, 844, 140, 80)
+  );
+  assert.equal(mobileDims.cols - 2, 5);
+  assert.equal(mobileDims.tileSize, 78);
 });
 
 test('computeGridDimensions overscans viewport for seamless drift coverage', () => {

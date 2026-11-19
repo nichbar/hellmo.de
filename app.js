@@ -225,10 +225,30 @@
     return grid.map((albumIdx) => albums[albumIdx]);
   }
 
+  function resolveTileTargetSize(
+    viewportWidth,
+    viewportHeight,
+    desktopTargetPx,
+    mobilePortraitTargetPx
+  ) {
+    const safeWidth = Math.max(320, Number(viewportWidth) || 1280);
+    const safeHeight = Math.max(240, Number(viewportHeight) || 720);
+    const desktopTarget = Math.min(400, Math.max(64, Number(desktopTargetPx) || 140));
+    const mobileTarget = Math.min(
+      400,
+      Math.max(64, Number(mobilePortraitTargetPx) || 80)
+    );
+
+    if (safeWidth <= 600 && safeHeight > safeWidth) {
+      return mobileTarget;
+    }
+    return desktopTarget;
+  }
+
   function computeGridDimensions(viewportWidth, viewportHeight, targetSizePx) {
     const safeWidth = Math.max(320, Number(viewportWidth) || 1280);
     const safeHeight = Math.max(240, Number(viewportHeight) || 720);
-    const clampedTarget = Math.min(400, Math.max(96, Number(targetSizePx) || 140));
+    const clampedTarget = Math.min(400, Math.max(64, Number(targetSizePx) || 140));
     const minVisibleCols = 4;
     const minVisibleRows = 4;
 
@@ -541,6 +561,7 @@
     buildTileMatrix,
     stepGridMatrix,
     pickRandomLineSlide,
+    resolveTileTargetSize,
     computeGridDimensions,
     resolveApiKey,
     formatRelativeTime,
@@ -572,6 +593,7 @@
       githubUrl: 'https://www.github.com/nichbar',
       pollIntervalMs: 300000,
       tileTargetSizePx: 140,
+      mobileTileTargetSizePx: 80,
       ambientDrift: true,
     },
     global.HELLMO_CONFIG || {}
@@ -605,12 +627,14 @@
     ghLink: document.getElementById('hud-github-link'),
   };
 
-  function readNumberStorage(key, fallback) {
+  function readOptionalNumberStorage(key) {
     try {
-      const val = Number.parseInt(localStorage.getItem(key) || '', 10);
-      return Number.isFinite(val) ? val : fallback;
+      const raw = localStorage.getItem(key);
+      if (raw === null || raw === '') return null;
+      const val = Number.parseInt(raw, 10);
+      return Number.isFinite(val) ? val : null;
     } catch (_) {
-      return fallback;
+      return null;
     }
   }
 
@@ -646,17 +670,19 @@
     currentPrimaryAlbum: null,
     cachedTopAlbums: null,
     cachedTopAlbumsAt: 0,
-    tileTargetSizePx: readNumberStorage(
-      STORAGE_KEYS.tileSize,
-      config.tileTargetSizePx
-    ),
+    customTileTargetSizePx: readOptionalNumberStorage(STORAGE_KEYS.tileSize),
     ambientDrift: readBoolStorage(STORAGE_KEYS.motion, config.ambientDrift),
     hudHidden: readBoolStorage(STORAGE_KEYS.hudHidden, false),
     pollTimerId: null,
     slideInitialTimerId: null,
     slideTimerId: null,
     slideFinishTimerId: null,
+    slideRaf1Id: null,
+    slideRaf2Id: null,
+    slideGeneration: 0,
     pendingExitingTiles: [],
+    pendingMovingTiles: [],
+    pendingTileTargets: [],
     isSliding: false,
     gridBoards: {
       a: null,
@@ -696,11 +722,23 @@
     return tile;
   }
 
+  function getEffectiveTileTargetSize() {
+    if (Number.isFinite(state.customTileTargetSizePx)) {
+      return state.customTileTargetSizePx;
+    }
+    return resolveTileTargetSize(
+      window.innerWidth,
+      window.innerHeight,
+      config.tileTargetSizePx,
+      config.mobileTileTargetSizePx
+    );
+  }
+
   function populateGrid(gridEl, gridKey, albums) {
     const dims = computeGridDimensions(
       window.innerWidth,
       window.innerHeight,
-      state.tileTargetSizePx
+      getEffectiveTileTargetSize()
     );
     const tileMatrix = buildTileMatrix(albums, dims.cols, dims.rows);
 
@@ -730,6 +768,7 @@
   }
 
   function stopSlideLoop() {
+    state.slideGeneration += 1;
     if (state.slideInitialTimerId !== null) {
       clearTimeout(state.slideInitialTimerId);
       state.slideInitialTimerId = null;
@@ -742,11 +781,32 @@
       clearTimeout(state.slideFinishTimerId);
       state.slideFinishTimerId = null;
     }
+    if (state.slideRaf1Id !== null) {
+      cancelAnimationFrame(state.slideRaf1Id);
+      state.slideRaf1Id = null;
+    }
+    if (state.slideRaf2Id !== null) {
+      cancelAnimationFrame(state.slideRaf2Id);
+      state.slideRaf2Id = null;
+    }
+    if (state.pendingTileTargets.length > 0) {
+      for (const item of state.pendingTileTargets) {
+        item.tile.classList.add('is-instant');
+        item.tile.style.transform = item.transform;
+      }
+      state.pendingTileTargets = [];
+    }
     if (state.pendingExitingTiles.length > 0) {
       for (const tile of state.pendingExitingTiles) {
         tile.remove();
       }
       state.pendingExitingTiles = [];
+    }
+    if (state.pendingMovingTiles.length > 0) {
+      for (const tile of state.pendingMovingTiles) {
+        tile.classList.remove('is-sliding', 'is-instant');
+      }
+      state.pendingMovingTiles = [];
     }
     state.isSliding = false;
   }
@@ -784,6 +844,7 @@
     if (clampedDelta === 0) return;
 
     state.isSliding = true;
+    const generation = state.slideGeneration;
 
     const gridEl = state.activeGridKey === 'a' ? els.gridA : els.gridB;
     const nextDomMatrix = board.domMatrix.map((row) => [...row]);
@@ -794,6 +855,7 @@
       clampedDelta
     );
 
+    const movingTiles = [];
     const enteringTiles = [];
     const exitingTiles = [];
     const absDelta = Math.abs(clampedDelta);
@@ -801,13 +863,14 @@
     if (move.axis === 'row') {
       const r = move.index;
 
-      // Animate all existing tiles in this row cleanly along X; any tile leaving the grid
-      // exits across the far edge while a matching clone enters from the opposite edge.
       for (let c = 0; c < cols; c += 1) {
         const tile = board.domMatrix[r][c];
         const targetCol = c + clampedDelta;
-        tile.style.transition = `transform ${SLIDE_DURATION_MS}ms ${SLIDE_EASING}`;
-        tile.style.transform = `translate3d(${targetCol * tileSize}px, ${r * tileSize}px, 0)`;
+        tile.classList.add('is-sliding');
+        movingTiles.push({
+          tile,
+          transform: `translate3d(${targetCol * tileSize}px, ${r * tileSize}px, 0)`,
+        });
 
         if (targetCol < 0 || targetCol >= cols) {
           exitingTiles.push(tile);
@@ -816,16 +879,18 @@
         }
       }
 
-      // Spawn clones just outside the entry edge for the wrapped-around slots
       for (let step = 0; step < absDelta; step += 1) {
         const startCol = clampedDelta > 0 ? -absDelta + step : cols + step;
         const finalCol = ((startCol + clampedDelta) % cols + cols) % cols;
         const sourceCol = ((finalCol - clampedDelta) % cols + cols) % cols;
         const album = board.albumMatrix[r][sourceCol];
         const clone = createTileElement(album, r, startCol, tileSize);
-        clone.style.transition = 'none';
+        clone.classList.add('is-instant', 'is-sliding');
         gridEl.appendChild(clone);
-        enteringTiles.push({ tile: clone, finalRow: r, finalCol });
+        enteringTiles.push({
+          tile: clone,
+          transform: `translate3d(${finalCol * tileSize}px, ${r * tileSize}px, 0)`,
+        });
         nextDomMatrix[r][finalCol] = clone;
       }
     } else {
@@ -834,8 +899,11 @@
       for (let r = 0; r < rows; r += 1) {
         const tile = board.domMatrix[r][c];
         const targetRow = r + clampedDelta;
-        tile.style.transition = `transform ${SLIDE_DURATION_MS}ms ${SLIDE_EASING}`;
-        tile.style.transform = `translate3d(${c * tileSize}px, ${targetRow * tileSize}px, 0)`;
+        tile.classList.add('is-sliding');
+        movingTiles.push({
+          tile,
+          transform: `translate3d(${c * tileSize}px, ${targetRow * tileSize}px, 0)`,
+        });
 
         if (targetRow < 0 || targetRow >= rows) {
           exitingTiles.push(tile);
@@ -850,36 +918,70 @@
         const sourceRow = ((finalRow - clampedDelta) % rows + rows) % rows;
         const album = board.albumMatrix[sourceRow][c];
         const clone = createTileElement(album, startRow, c, tileSize);
-        clone.style.transition = 'none';
+        clone.classList.add('is-instant', 'is-sliding');
         gridEl.appendChild(clone);
-        enteringTiles.push({ tile: clone, finalRow, finalCol: c });
+        enteringTiles.push({
+          tile: clone,
+          transform: `translate3d(${c * tileSize}px, ${finalRow * tileSize}px, 0)`,
+        });
         nextDomMatrix[finalRow][c] = clone;
-      }
-    }
-
-    if (enteringTiles.length > 0) {
-      // Force layout so entering clones animate from their off-edge start coordinates
-      void gridEl.offsetWidth;
-      for (const item of enteringTiles) {
-        item.tile.style.transition = `transform ${SLIDE_DURATION_MS}ms ${SLIDE_EASING}`;
-        item.tile.style.transform = `translate3d(${item.finalCol * tileSize}px, ${
-          item.finalRow * tileSize
-        }px, 0)`;
       }
     }
 
     board.domMatrix = nextDomMatrix;
     board.albumMatrix = nextAlbumMatrix;
     state.pendingExitingTiles = exitingTiles;
+    state.pendingTileTargets = [...movingTiles, ...enteringTiles];
+    state.pendingMovingTiles = state.pendingTileTargets.map((item) => item.tile);
 
-    state.slideFinishTimerId = window.setTimeout(() => {
+    const finishSlide = () => {
+      if (generation !== state.slideGeneration) return;
       for (const tile of exitingTiles) {
         tile.remove();
       }
+      for (const tile of state.pendingMovingTiles) {
+        tile.classList.remove('is-sliding', 'is-instant');
+      }
       state.pendingExitingTiles = [];
+      state.pendingMovingTiles = [];
+      state.pendingTileTargets = [];
       state.isSliding = false;
       state.slideFinishTimerId = null;
-    }, SLIDE_DURATION_MS + 40);
+    };
+
+    // Safety fallback in case the browser throttles animation frames
+    state.slideFinishTimerId = window.setTimeout(
+      finishSlide,
+      SLIDE_DURATION_MS + 400
+    );
+
+    // Commit initial off-edge clone coordinates on frame 0, enable CSS transition on frame 1,
+    // and apply target transforms to all sliding tiles together on frame 2 (reliable on iOS WebKit).
+    void gridEl.offsetWidth;
+    state.slideRaf1Id = window.requestAnimationFrame(() => {
+      state.slideRaf1Id = null;
+      if (generation !== state.slideGeneration) return;
+      for (const item of enteringTiles) {
+        item.tile.classList.remove('is-instant');
+      }
+      void gridEl.offsetWidth;
+
+      state.slideRaf2Id = window.requestAnimationFrame(() => {
+        state.slideRaf2Id = null;
+        if (generation !== state.slideGeneration) return;
+        for (const item of movingTiles) {
+          item.tile.style.transform = item.transform;
+        }
+        for (const item of enteringTiles) {
+          item.tile.style.transform = item.transform;
+        }
+        clearTimeout(state.slideFinishTimerId);
+        state.slideFinishTimerId = window.setTimeout(
+          finishSlide,
+          SLIDE_DURATION_MS + 60
+        );
+      });
+    });
   }
 
   function preloadImage(url, timeoutMs) {
@@ -1220,7 +1322,7 @@
       const dims = computeGridDimensions(
         window.innerWidth,
         window.innerHeight,
-        state.tileTargetSizePx
+        getEffectiveTileTargetSize()
       );
 
       let albumPool = mergeAlbumPools([primaryAlbum], recentAlbums, 120);
@@ -1341,29 +1443,49 @@
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
-        if (state.currentAlbums.length > 0) {
-          renderWallpaperWall(state.currentAlbums, state.currentPrimaryAlbum, true);
+        if (state.currentAlbums.length === 0) return;
+        const board = state.gridBoards[state.activeGridKey];
+        const nextDims = computeGridDimensions(
+          window.innerWidth,
+          window.innerHeight,
+          getEffectiveTileTargetSize()
+        );
+        if (
+          board &&
+          board.dims.cols === nextDims.cols &&
+          board.dims.rows === nextDims.rows &&
+          board.dims.tileSize === nextDims.tileSize
+        ) {
+          return;
         }
+        renderWallpaperWall(state.currentAlbums, state.currentPrimaryAlbum, true);
       }, 120);
     });
 
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) {
+      if (document.hidden) {
+        stopSlideLoop();
+      } else {
+        if (state.ambientDrift) {
+          startSlideLoop();
+        }
         refreshLastfm();
       }
     });
 
     els.btnSmaller.addEventListener('click', () => {
-      state.tileTargetSizePx = Math.max(110, state.tileTargetSizePx - 30);
-      writeStorage(STORAGE_KEYS.tileSize, state.tileTargetSizePx);
+      const currentSize = getEffectiveTileTargetSize();
+      state.customTileTargetSizePx = Math.max(64, currentSize - 30);
+      writeStorage(STORAGE_KEYS.tileSize, state.customTileTargetSizePx);
       if (state.currentAlbums.length > 0) {
         renderWallpaperWall(state.currentAlbums, state.currentPrimaryAlbum, true);
       }
     });
 
     els.btnLarger.addEventListener('click', () => {
-      state.tileTargetSizePx = Math.min(380, state.tileTargetSizePx + 30);
-      writeStorage(STORAGE_KEYS.tileSize, state.tileTargetSizePx);
+      const currentSize = getEffectiveTileTargetSize();
+      state.customTileTargetSizePx = Math.min(380, currentSize + 30);
+      writeStorage(STORAGE_KEYS.tileSize, state.customTileTargetSizePx);
       if (state.currentAlbums.length > 0) {
         renderWallpaperWall(state.currentAlbums, state.currentPrimaryAlbum, true);
       }
