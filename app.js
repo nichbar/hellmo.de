@@ -320,6 +320,14 @@
     return date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
   }
 
+  function formatStatusLabel(track, statusOverride, nowMs) {
+    if (statusOverride) return statusOverride;
+    if (!track) return 'NO SCROBBLES';
+    if (track.nowPlaying) return 'NOW PLAYING';
+    if (!Number.isFinite(track.playedUts)) return 'LAST LISTENED';
+    return `LAST LISTENED · ${formatRelativeTime(track.playedUts, nowMs)}`;
+  }
+
   function hashString(input) {
     let hash = 2166136261;
     const str = String(input || 'hellmo.de');
@@ -565,6 +573,7 @@
     computeGridDimensions,
     resolveApiKey,
     formatRelativeTime,
+    formatStatusLabel,
     buildProceduralCoverSvg,
     buildDemoAlbums,
     parseStaticSnapshot,
@@ -1177,11 +1186,7 @@
     }
 
     els.hudStatusDot.classList.toggle('is-live', Boolean(track.nowPlaying));
-    els.hudStatusLabel.textContent = statusOverride
-      ? statusOverride
-      : track.nowPlaying
-      ? 'NOW PLAYING'
-      : `LAST LISTENED · ${formatRelativeTime(track.playedUts)}`;
+    els.hudStatusLabel.textContent = formatStatusLabel(track, statusOverride);
 
     els.hudTrack.textContent = track.trackName;
     els.hudMeta.textContent =

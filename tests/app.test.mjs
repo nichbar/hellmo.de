@@ -251,18 +251,94 @@ test('buildLastfmSnapshot builds combined recent + top albums snapshot without e
   };
 
   try {
+    const beforeSec = Math.floor(Date.now() / 1000);
     const snapshot = await buildLastfmSnapshot({
       username: 'nichbar',
       apiKey: 'secret-test-key',
     });
+    const afterSec = Math.floor(Date.now() / 1000);
     assert.equal(snapshot.username, 'nichbar');
     assert.equal(snapshot.primary.trackName, 'Recent Song');
     assert.equal(snapshot.primary.nowPlaying, false);
+    assert.ok(
+      Number.isFinite(snapshot.primary.playedUts) &&
+        snapshot.primary.playedUts >= beforeSec &&
+        snapshot.primary.playedUts <= afterSec
+    );
     assert.equal(snapshot.albums.length, 2);
     assert.equal(JSON.stringify(snapshot).includes('secret-test-key'), false);
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test('buildLastfmSnapshot falls back to second track playedUts when primary is not nowPlaying and lacks playedUts', async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (url) => {
+    const parsedUrl = new URL(url);
+    const method = parsedUrl.searchParams.get('method');
+    if (method === 'user.getrecenttracks') {
+      return {
+        ok: true,
+        json: async () => ({
+          recenttracks: {
+            track: [
+              {
+                name: 'Recent Song',
+                artist: { '#text': 'Recent Artist' },
+                album: { '#text': 'Recent Album' },
+                image: [{ size: 'extralarge', '#text': 'https://img.example/recent.jpg' }],
+              },
+              {
+                name: 'Previous Song',
+                artist: { '#text': 'Previous Artist' },
+                album: { '#text': 'Previous Album' },
+                date: { uts: '1700000123' },
+                image: [{ size: 'extralarge', '#text': 'https://img.example/prev.jpg' }],
+              },
+            ],
+          },
+        }),
+      };
+    }
+    if (method === 'user.gettopalbums') {
+      return {
+        ok: true,
+        json: async () => ({ topalbums: { album: [] } }),
+      };
+    }
+    throw new Error(`Unexpected fetch method: ${method}`);
+  };
+
+  try {
+    const snapshot = await buildLastfmSnapshot({
+      username: 'nichbar',
+      apiKey: 'secret-test-key',
+    });
+    assert.equal(snapshot.primary.nowPlaying, false);
+    assert.equal(snapshot.primary.playedUts, 1700000123);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test('formatStatusLabel avoids duplicating LAST LISTENED when playedUts is null', () => {
+  assert.equal(
+    app.formatStatusLabel({ nowPlaying: false, playedUts: null }),
+    'LAST LISTENED'
+  );
+  assert.equal(
+    app.formatStatusLabel({ nowPlaying: true, playedUts: null }),
+    'NOW PLAYING'
+  );
+  assert.equal(
+    app.formatStatusLabel({ nowPlaying: false, playedUts: 1700000000 }, null, 1700000120 * 1000),
+    'LAST LISTENED · 2m ago'
+  );
+  assert.equal(
+    app.formatStatusLabel({ nowPlaying: false, playedUts: 1700000000 }, 'OFFLINE'),
+    'OFFLINE'
+  );
 });
 
 test('buildDemoAlbums generates distinct procedural covers for preview mode', () => {

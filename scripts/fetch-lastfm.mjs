@@ -69,10 +69,17 @@ export async function buildLastfmSnapshot({ username, apiKey, maxAlbums = 120 })
     }
   }
 
+  const fallbackPlayedUts = Number.isFinite(primary.playedUts)
+    ? primary.playedUts
+    : primary.nowPlaying
+    ? Math.floor(Date.now() / 1000)
+    : tracks.find((t) => Number.isFinite(t.playedUts))?.playedUts ?? null;
+
   const primaryTrack = {
     ...primary,
     // A scheduled snapshot should not falsely claim a track is still live hours later
     nowPlaying: false,
+    playedUts: fallbackPlayedUts,
     imageUrl: primaryCoverUrl,
   };
 
