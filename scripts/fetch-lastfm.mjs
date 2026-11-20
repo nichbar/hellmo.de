@@ -30,7 +30,7 @@ async function fetchJson(params) {
   return data;
 }
 
-export async function buildLastfmSnapshot({ username, apiKey, maxAlbums = 120 }) {
+export async function buildLastfmSnapshot({ username, apiKey, maxAlbums = 250 }) {
   if (!apiKey) {
     throw new Error('Missing LASTFM_API_KEY environment variable');
   }
@@ -97,13 +97,13 @@ export async function buildLastfmSnapshot({ username, apiKey, maxAlbums = 120 })
 
   let albums = mergeAlbumPools(primarySeed, recentAlbums, maxAlbums);
 
-  if (albums.length < 60) {
+  if (albums.length < maxAlbums) {
     try {
       const topPayload = await fetchJson({
         method: 'user.gettopalbums',
         user,
         api_key: apiKey,
-        limit: '100',
+        limit: String(Math.max(300, maxAlbums)),
       });
       const topAlbums = parseTopAlbums(topPayload);
       albums = mergeAlbumPools(albums, topAlbums, maxAlbums);

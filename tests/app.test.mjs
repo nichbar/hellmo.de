@@ -148,6 +148,13 @@ test('parseTopAlbums and mergeAlbumPools combine recent and top albums cleanly',
   assert.equal(merged.length, 2);
   assert.equal(merged[0].albumName, 'Album 1');
   assert.equal(merged[1].albumName, 'Top Only');
+
+  const many = Array.from({ length: 280 }, (_, i) => ({
+    albumName: `Album ${i}`,
+    artistName: `Artist ${i}`,
+    imageUrl: `https://img.example/pool-${i}.jpg`,
+  }));
+  assert.equal(app.mergeAlbumPools(many, []).length, 250);
 });
 
 test('buildTileAssignments fills all tiles with varied covers and avoids adjacent duplicates', () => {
@@ -322,6 +329,52 @@ test('buildLastfmSnapshot falls back to second track playedUts when primary is n
   }
 });
 
+test('buildLastfmSnapshot fetches top albums when recent albums are below 250 and caps pool at 250', async () => {
+  const originalFetch = globalThis.fetch;
+  let topAlbumsFetched = false;
+  globalThis.fetch = async (url) => {
+    const parsedUrl = new URL(url);
+    const method = parsedUrl.searchParams.get('method');
+    if (method === 'user.getrecenttracks') {
+      const tracks = Array.from({ length: 70 }, (_, i) => ({
+        name: `Track ${i}`,
+        artist: { '#text': `Artist ${i}` },
+        album: { '#text': `Recent Album ${i}` },
+        date: { uts: String(1700000000 - i * 100) },
+        image: [{ size: 'extralarge', '#text': `https://img.example/r-${i}.jpg` }],
+      }));
+      return {
+        ok: true,
+        json: async () => ({ recenttracks: { track: tracks } }),
+      };
+    }
+    if (method === 'user.gettopalbums') {
+      topAlbumsFetched = true;
+      const top = Array.from({ length: 250 }, (_, i) => ({
+        name: `Top Album ${i}`,
+        artist: { name: `Top Artist ${i}` },
+        image: [{ size: 'extralarge', '#text': `https://img.example/t-${i}.jpg` }],
+      }));
+      return {
+        ok: true,
+        json: async () => ({ topalbums: { album: top } }),
+      };
+    }
+    throw new Error(`Unexpected fetch method: ${method}`);
+  };
+
+  try {
+    const snapshot = await buildLastfmSnapshot({
+      username: 'nichbar',
+      apiKey: 'secret-test-key',
+    });
+    assert.equal(topAlbumsFetched, true);
+    assert.equal(snapshot.albums.length, 250);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test('formatStatusLabel avoids duplicating LAST LISTENED when playedUts is null', () => {
   assert.equal(
     app.formatStatusLabel({ nowPlaying: false, playedUts: null }),
@@ -439,20 +492,53 @@ test('buildTileMatrix and stepGridMatrix shift a single row or column with wrap-
   assert.equal(built[0].length, 3);
 });
 
-test('pickRandomLineSlide chooses valid interior lines when overscan is present and non-zero delta', () => {
+test('pickRandomLineSlide restricts moves to left-to-right and top-to-bottom interior lines', () => {
   let step = 0;
-  const values = [0.1, 0.5, 0.2, 0.9, 0.8, 0.4, 0.7, 0.1];
+  const values = [0.1, 0.5, 0.9, 0.8, 0.4, 0.1];
   const rng = () => values[step++ % values.length];
 
   const rowMove = app.pickRandomLineSlide(6, 8, rng);
   assert.equal(rowMove.axis, 'row');
   assert.ok(rowMove.index >= 1 && rowMove.index <= 4);
-  assert.ok(rowMove.delta === -2 || rowMove.delta === -1 || rowMove.delta === 1 || rowMove.delta === 2);
+  assert.equal(rowMove.delta, 2);
 
   const colMove = app.pickRandomLineSlide(6, 8, rng);
   assert.equal(colMove.axis, 'col');
   assert.ok(colMove.index >= 1 && colMove.index <= 6);
-  assert.ok(colMove.delta === -2 || colMove.delta === -1 || colMove.delta === 1 || colMove.delta === 2);
+  assert.equal(colMove.delta, 1);
+
+  for (let i = 0; i < 40; i += 1) {
+    const move = app.pickRandomLineSlide(6, 8, Math.random);
+    assert.ok(move.delta === 1 || move.delta === 2);
+  }
+});
+
+test('pickRandomLineSlide avoids same or adjacent line indices on the same axis when continuing from lastSlide', () => {
+  // With rows = 6, interior rows are [1, 2, 3, 4].
+  // After row 2, only row 4 has |index - 2| > 1.
+  for (let i = 0; i < 20; i += 1) {
+    const move = app.pickRandomLineSlide(6, 8, () => 0.0, { axis: 'row', index: 2 });
+    assert.equal(move.axis, 'row');
+    assert.equal(move.index, 4);
+    assert.ok(move.delta > 0);
+  }
+
+  // With cols = 8, interior cols are [1, 2, 3, 4, 5, 6].
+  // After col 3, cols 2, 3, 4 must never be picked.
+  for (let i = 0; i < 50; i += 1) {
+    const move = app.pickRandomLineSlide(6, 8, Math.random, { axis: 'col', index: 3 });
+    if (move.axis === 'col') {
+      assert.ok(Math.abs(move.index - 3) > 1);
+    }
+    assert.ok(move.delta === 1 || move.delta === 2);
+  }
+
+  // When no non-adjacent interior line exists on the previous axis (rows = 5 -> interior [1,2,3], last row 2),
+  // it switches to the perpendicular axis where valid lines exist.
+  const forcedAxisSwitch = app.pickRandomLineSlide(5, 8, () => 0.0, { axis: 'row', index: 2 });
+  assert.equal(forcedAxisSwitch.axis, 'col');
+  assert.ok(forcedAxisSwitch.index >= 1 && forcedAxisSwitch.index <= 6);
+  assert.ok(forcedAxisSwitch.delta > 0);
 });
 
 test('resolveApiKey checks query string, storage, then config and ignores placeholder', () => {

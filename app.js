@@ -151,7 +151,7 @@
     const merged = [];
     const seenKeys = new Set();
     const seenUrls = new Set();
-    const cap = Number.isFinite(maxCount) ? maxCount : 120;
+    const cap = Number.isFinite(maxCount) ? maxCount : 250;
 
     for (const pool of [primaryAlbums || [], secondaryAlbums || []]) {
       for (const album of pool) {
@@ -480,38 +480,73 @@
     };
   }
 
-  function pickRandomLineSlide(rows, cols, rng) {
+  function getCandidateLineIndices(lineCount, excludedIndex) {
+    const hasOverscan = lineCount >= 4;
+    const minIdx = hasOverscan ? 1 : 0;
+    const maxExclusive = hasOverscan ? lineCount - 1 : lineCount;
+    const all = [];
+    for (let i = minIdx; i < maxExclusive; i += 1) {
+      all.push(i);
+    }
+    if (!Number.isFinite(excludedIndex)) {
+      return { preferred: all, fallback: all };
+    }
+    const preferred = all.filter((idx) => Math.abs(idx - excludedIndex) > 1);
+    return { preferred, fallback: all };
+  }
+
+  function pickRandomLineSlide(rows, cols, rng, lastSlide) {
     const safeRows = Math.max(1, Number(rows) || 1);
     const safeCols = Math.max(1, Number(cols) || 1);
     const rand = typeof rng === 'function' ? rng : Math.random;
 
-    let axis;
     if (safeRows <= 1 && safeCols <= 1) {
       return { axis: 'row', index: 0, delta: 0 };
     }
-    if (safeRows <= 1) {
+
+    const canPickRow = safeCols > 1;
+    const canPickCol = safeRows > 1;
+    const excludedRow =
+      lastSlide && lastSlide.axis === 'row' ? lastSlide.index : NaN;
+    const excludedCol =
+      lastSlide && lastSlide.axis === 'col' ? lastSlide.index : NaN;
+
+    const rowCandidates = canPickRow
+      ? getCandidateLineIndices(safeRows, excludedRow)
+      : { preferred: [], fallback: [] };
+    const colCandidates = canPickCol
+      ? getCandidateLineIndices(safeCols, excludedCol)
+      : { preferred: [], fallback: [] };
+
+    let axis;
+    if (!canPickCol) {
       axis = 'row';
-    } else if (safeCols <= 1) {
+    } else if (!canPickRow) {
+      axis = 'col';
+    } else if (
+      rowCandidates.preferred.length > 0 &&
+      colCandidates.preferred.length > 0
+    ) {
+      axis = rand() < 0.5 ? 'row' : 'col';
+    } else if (rowCandidates.preferred.length > 0) {
+      axis = 'row';
+    } else if (colCandidates.preferred.length > 0) {
       axis = 'col';
     } else {
       axis = rand() < 0.5 ? 'row' : 'col';
     }
 
-    const lineCount = axis === 'row' ? safeRows : safeCols;
-    // Prefer visible interior lines (1 .. lineCount - 2) when overscan exists so slides are clearly seen
-    const hasOverscan = lineCount >= 4;
-    const minIdx = hasOverscan ? 1 : 0;
-    const maxExclusive = hasOverscan ? lineCount - 1 : lineCount;
-    const index =
-      minIdx + Math.floor(rand() * Math.max(1, maxExclusive - minIdx));
+    const info = axis === 'row' ? rowCandidates : colCandidates;
+    const pool = info.preferred.length > 0 ? info.preferred : info.fallback;
+    const index = pool[Math.floor(rand() * pool.length)] ?? 0;
 
-    const direction = rand() < 0.5 ? -1 : 1;
-    const maxStep = Math.max(1, Math.min(2, lineCount - 1));
+    const lineLength = axis === 'row' ? safeCols : safeRows;
+    const maxStep = Math.max(1, Math.min(2, lineLength - 1));
     const magnitude = maxStep >= 2 && rand() >= 0.72 ? 2 : 1;
     return {
       axis,
       index,
-      delta: direction * magnitude,
+      delta: magnitude,
     };
   }
 
@@ -693,6 +728,7 @@
     pendingMovingTiles: [],
     pendingTileTargets: [],
     isSliding: false,
+    lastSlide: null,
     gridBoards: {
       a: null,
       b: null,
@@ -769,6 +805,7 @@
     }
 
     gridEl.replaceChildren(fragment);
+    state.lastSlide = null;
     state.gridBoards[gridKey] = {
       dims,
       domMatrix,
@@ -844,7 +881,7 @@
     const { rows, cols, tileSize } = board.dims;
     if (rows < 2 || cols < 2) return;
 
-    const move = pickRandomLineSlide(rows, cols);
+    const move = pickRandomLineSlide(rows, cols, undefined, state.lastSlide);
     if (!move || move.delta === 0) return;
 
     const lineLength = move.axis === 'row' ? cols : rows;
@@ -852,6 +889,7 @@
       Math.sign(move.delta) * Math.min(lineLength - 1, Math.abs(move.delta));
     if (clampedDelta === 0) return;
 
+    state.lastSlide = { axis: move.axis, index: move.index };
     state.isSliding = true;
     const generation = state.slideGeneration;
 
@@ -1161,7 +1199,7 @@
       user: config.lastfmUsername,
       api_key: apiKey,
       format: 'json',
-      limit: '100',
+      limit: '300',
     });
     try {
       const res = await fetch(`https://ws.audioscrobbler.com/2.0/?${params.toString()}`);
@@ -1246,7 +1284,7 @@
           }
         : albums[0];
 
-      const wallAlbums = mergeAlbumPools([primaryAlbum], albums, 120);
+      const wallAlbums = mergeAlbumPools([primaryAlbum], albums, 250);
       updateMusicHud(primary);
       await renderWallpaperWall(wallAlbums, primaryAlbum, false);
     } catch (err) {
@@ -1330,10 +1368,10 @@
         getEffectiveTileTargetSize()
       );
 
-      let albumPool = mergeAlbumPools([primaryAlbum], recentAlbums, 120);
-      if (albumPool.length < Math.max(dims.totalTiles, 48)) {
+      let albumPool = mergeAlbumPools([primaryAlbum], recentAlbums, 250);
+      if (albumPool.length < 250) {
         const topAlbums = await fetchTopAlbumsPool(state.apiKey);
-        albumPool = mergeAlbumPools(albumPool, topAlbums, 120);
+        albumPool = mergeAlbumPools(albumPool, topAlbums, 250);
       }
 
       updateMusicHud(primary);
