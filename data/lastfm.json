@@ -1,16 +1,424 @@
 {
-  "updatedAt": "2026-11-27T01:21:48.181Z",
+  "updatedAt": "2026-11-27T15:55:12.766Z",
   "username": "nichbar",
   "primary": {
-    "trackName": "你不是真正的快樂",
-    "artistName": "五月天",
-    "albumName": "後 青春期的詩",
+    "trackName": "空と海の诗",
+    "artistName": "天门",
+    "albumName": "秒速5センチメートル",
     "nowPlaying": false,
-    "playedUts": 1795687192,
-    "trackUrl": "https://www.last.fm/music/%E4%BA%94%E6%9C%88%E5%A4%A9/_/%E4%BD%A0%E4%B8%8D%E6%98%AF%E7%9C%9F%E6%AD%A3%E7%9A%84%E5%BF%AB%E6%A8%82",
-    "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cbbd58c8c0c3b9b5e39051806041afca.jpg"
+    "playedUts": 1795794732,
+    "trackUrl": "https://www.last.fm/music/%E5%A4%A9%E9%97%A8/_/%E7%A9%BA%E3%81%A8%E6%B5%B7%E3%81%AE%E8%AF%97",
+    "imageUrl": null
   },
   "albums": [
+    {
+      "albumName": "Kid A",
+      "artistName": "Radiohead",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2ed343318c844d19cd897ec67fad11c4.png",
+      "url": "https://www.last.fm/music/Radiohead/_/Idioteque+(Live+At+Canal%252B+Studios,+Paris)"
+    },
+    {
+      "albumName": "EVANGELION:DEATH",
+      "artistName": "鷺巣詩郎",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cf3372bb7bdf4611bd10f00d4a7285fc.png",
+      "url": "https://www.last.fm/music/%E9%B7%BA%E5%B7%A3%E8%A9%A9%E9%83%8E/_/Kanon+D-dur+(Strings+Orchestra)"
+    },
+    {
+      "albumName": "Someone Like You (The Voice Performance)",
+      "artistName": "Amanda Brown",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/11f0c8ac82f646148486a847e79c95fa.png",
+      "url": "https://www.last.fm/music/Amanda+Brown/_/Someone+Like+You+(The+Voice+Performance)"
+    },
+    {
+      "albumName": "The Black Parade",
+      "artistName": "My Chemical Romance",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7675defb2787ce67cd030081eb8ff77c.png",
+      "url": "https://www.last.fm/music/My+Chemical+Romance/_/Teenagers"
+    },
+    {
+      "albumName": "Falling Into You",
+      "artistName": "Céline Dion",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cb8475e59a9f4044692f4462caff7f86.png",
+      "url": "https://www.last.fm/music/C%C3%A9line+Dion/_/Because+You+Loved+Me+(Theme+from+%22Up+Close+and+Personal%22)"
+    },
+    {
+      "albumName": "Blur: The Best Of",
+      "artistName": "Blur",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f003d2e7c704fa146eca3a04e0db51a9.jpg",
+      "url": "https://www.last.fm/music/Blur/_/Coffee+&+TV"
+    },
+    {
+      "albumName": "All Eyez on Me",
+      "artistName": "2Pac",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8bd696cbd4aa4d4eb6d35393232f55e4.png",
+      "url": "https://www.last.fm/music/2Pac/_/Holla+at+Me"
+    },
+    {
+      "albumName": "Coming Up (Deluxe Edition)",
+      "artistName": "Suede",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/617f35da043e40e9ad4ba33910b74a2d.jpg",
+      "url": "https://www.last.fm/music/Suede/_/Trash"
+    },
+    {
+      "albumName": "Back to Bedlam",
+      "artistName": "James Blunt",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/3031ceaa16a9d85143cc29119eb8b8bb.jpg",
+      "url": "https://www.last.fm/music/James+Blunt/_/You%27re+Beautiful"
+    },
+    {
+      "albumName": "Some Nights",
+      "artistName": "fun.",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c643374762104e128456da5edfc12e5e.png",
+      "url": "https://www.last.fm/music/fun./_/Carry+On"
+    },
+    {
+      "albumName": "Radiohead for Solo Piano",
+      "artistName": "Josh Cohen",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f3b69e5febeeff294aed4b79b76aad3c.jpg",
+      "url": "https://www.last.fm/music/Josh+Cohen/_/Bloom"
+    },
+    {
+      "albumName": "Rubber Soul (Remastered 2009)",
+      "artistName": "The Beatles",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/4c8ae59add023440859750e5e60e55bb.png",
+      "url": "https://www.last.fm/music/The+Beatles/_/In+My+Life+(Remastered+2009)"
+    },
+    {
+      "albumName": "21",
+      "artistName": "Adele",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7694508c2aa520df08bb8e6248bfedf0.png",
+      "url": "https://www.last.fm/music/Adele/_/One+and+Only"
+    },
+    {
+      "albumName": "My Beautiful Dark Twisted Fantasy",
+      "artistName": "Kanye West",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8a071c4b073625018de5f0ac58727511.png",
+      "url": "https://www.last.fm/music/Kanye+West/_/Runaway"
+    },
+    {
+      "albumName": "Whitney",
+      "artistName": "Whitney Houston",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/6272f78748271133711743f2c2b19a4f.jpg",
+      "url": "https://www.last.fm/music/Whitney+Houston/_/I+Wanna+Dance+with+Somebody+(Who+Loves+Me)"
+    },
+    {
+      "albumName": "オリジナル・サウンドトラック「機動戦士ガンダム サンダーボルト」/菊地成孔",
+      "artistName": "菊地成孔",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c89cc6913db833651a2026c94fbe8f45.jpg",
+      "url": "https://www.last.fm/music/%E8%8F%8A%E5%9C%B0%E6%88%90%E5%AD%94/_/%E3%81%9F%E3%81%A0%E6%B3%A3%E3%81%8F%E3%81%A0%E3%81%91~Oh+god,+I%27m+alone~"
+    },
+    {
+      "albumName": "The Dark Side of the Moon",
+      "artistName": "Pink Floyd",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/d4bdd038cacbec705e269edb0fd38419.png",
+      "url": "https://www.last.fm/music/Pink+Floyd/_/Money"
+    },
+    {
+      "albumName": "Parachutes",
+      "artistName": "Coldplay",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/5fbcfb7258117e88cb73b45e25c88b01.jpg",
+      "url": "https://www.last.fm/music/Coldplay/_/Trouble"
+    },
+    {
+      "albumName": "Hybrid Theory (Bonus Edition)",
+      "artistName": "Linkin Park",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/56989cdb558cb4f6609eb906029399d8.jpg",
+      "url": "https://www.last.fm/music/Linkin+Park/_/My+December"
+    },
+    {
+      "albumName": "OK Computer",
+      "artistName": "Radiohead",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/62d26c6cb4ac4bdccb8f3a2a0fd55421.png",
+      "url": "https://www.last.fm/music/Radiohead/_/Palo+Alto"
+    },
+    {
+      "albumName": "Blade Runner 2049 (Original Motion Picture Soundtrack)",
+      "artistName": "Hans Zimmer;Benjamin Wallfisch",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/a9ba49094731ed61f86bbc8110cc7782.png",
+      "url": "https://www.last.fm/music/Hans+Zimmer;Benjamin+Wallfisch/_/Blade+Runner"
+    },
+    {
+      "albumName": "The Blueprint (Explicit Version)",
+      "artistName": "JAY-Z",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/443569610c07522548fc9099652159c3.png",
+      "url": "https://www.last.fm/music/JAY-Z/_/The+Ruler%27s+Back"
+    },
+    {
+      "albumName": "Seven Nation Army (The Glitch Mob Remix)",
+      "artistName": "The White Stripes; The Glitch Mob",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/73ed6ff56e0251ffaa9a10c804bec5c2.jpg",
+      "url": "https://www.last.fm/music/The+White+Stripes;+The+Glitch+Mob/_/Seven+Nation+Army+(The+Glitch+Mob+Remix)"
+    },
+    {
+      "albumName": "Live At Wembley Stadium",
+      "artistName": "Queen",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/e5140dd5c5267ffd7657c478819e1dc3.jpg",
+      "url": "https://www.last.fm/music/Queen/_/Love+Of+My+Life+(Live+at+Wembley)"
+    },
+    {
+      "albumName": "Trials & Tribulations",
+      "artistName": "Ace Hood; Future; Rick Ross",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/fbe48852d8764e70a2fe5e73da99057b.png",
+      "url": "https://www.last.fm/music/Ace+Hood;+Future;+Rick+Ross/_/Bugatti"
+    },
+    {
+      "albumName": "Get Rich or Die Tryin'",
+      "artistName": "50 Cent",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/0df88df2ca9e67709d7a73a3553db7a1.jpg",
+      "url": "https://www.last.fm/music/50+Cent/_/P.I.M.P."
+    },
+    {
+      "albumName": "HEART STATION",
+      "artistName": "宇多田ヒカル",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/700f3432326b3345535bc20bdc259232.jpg",
+      "url": "https://www.last.fm/music/%E5%AE%87%E5%A4%9A%E7%94%B0%E3%83%92%E3%82%AB%E3%83%AB/_/Beautiful+World"
+    },
+    {
+      "albumName": "Meteora",
+      "artistName": "Linkin Park",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/fee069a98672ac3719f6c766ff6f0f9c.jpg",
+      "url": "https://www.last.fm/music/Linkin+Park/_/Numb"
+    },
+    {
+      "albumName": "Indiana Jones and the Last Crusade (Original Motion Picture Soundtrack)",
+      "artistName": "John Williams",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/698c6304334272d28872adb14446fa85.jpg",
+      "url": "https://www.last.fm/music/John+Williams/_/Finale+&+End+Credits+(From+%22Indiana+Jones+and+the+Last+Crusade%22%2FScore)"
+    },
+    {
+      "albumName": "Hail to the Thief",
+      "artistName": "Radiohead",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/55ac8f97bde6cbe5e9a8857b435457e9.jpg",
+      "url": "https://www.last.fm/music/Radiohead/_/Sit+Down+Stand+Up+(Snakes+&+Ladders)"
+    },
+    {
+      "albumName": "Amnesiac",
+      "artistName": "Radiohead",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/d59fb77b86ba4dd5d7f99c34564a56ce.jpg",
+      "url": "https://www.last.fm/music/Radiohead/_/Like+Spinning+Plates"
+    },
+    {
+      "albumName": "MTV Unplugged",
+      "artistName": "Oasis",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/92329f20e22257d804a95e7e75fe3f15.jpg",
+      "url": "https://www.last.fm/music/Oasis/_/morning+glory+(live)"
+    },
+    {
+      "albumName": "The Bends (Collector's Edition)",
+      "artistName": "Radiohead",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/81bd284ca2532f25d402b1b59f1a8dc6.jpg",
+      "url": "https://www.last.fm/music/Radiohead/_/Street+Spirit+(Fade+Out)+%5BAcoustic+Version%5D"
+    },
+    {
+      "albumName": "Nothing Without Love",
+      "artistName": "Nate Ruess",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/6a76513f64964d78cd99c180cf66b7e1.jpg",
+      "url": "https://www.last.fm/music/Nate+Ruess/_/Nothing+Without+Love"
+    },
+    {
+      "albumName": "19",
+      "artistName": "Adele",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/58a9a10b96ac70e224f67c8c41e406e7.png",
+      "url": "https://www.last.fm/music/Adele/_/Chasing+Pavements"
+    },
+    {
+      "albumName": "Daydream",
+      "artistName": "Mariah Carey",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/a8cb3dce5c18d34b582f2329ba001f02.jpg",
+      "url": "https://www.last.fm/music/Mariah+Carey/_/Fantasy"
+    },
+    {
+      "albumName": "Star Wars: The Empire Strikes Back (Original Motion Picture Soundtrack)",
+      "artistName": "John Williams",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/689299dc1d74660a08e08e755b01cafd.jpg",
+      "url": "https://www.last.fm/music/John+Williams/_/The+Imperial+March+(Darth+Vader%27s+Theme)+(From+%22Star+Wars:+The+Empire+Strikes+Back%22%2FScore)"
+    },
+    {
+      "albumName": "Singing Bones",
+      "artistName": "The Handsome Family",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/fe2c0cce356e1b5f51bf56d5e5b4665a.jpg",
+      "url": "https://www.last.fm/music/The+Handsome+Family/_/Far+From+Any+Road"
+    },
+    {
+      "albumName": "Inception (Music from the Motion Picture)",
+      "artistName": "Hans Zimmer",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/fe27be04693b9a1c81596bb0af0c26e1.jpg",
+      "url": "https://www.last.fm/music/Hans+Zimmer/_/We+Built+Our+Own+World"
+    },
+    {
+      "albumName": "HIStory - Past, Present and Future - Book I",
+      "artistName": "Michael Jackson",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/124d91edf558a82a897dbd4c798fdaca.jpg",
+      "url": "https://www.last.fm/music/Michael+Jackson/_/You+Are+Not+Alone"
+    },
+    {
+      "albumName": "Trouble Deluxe Edition",
+      "artistName": "Akon",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/61d834acf4be21399256f014e7cd7358.jpg",
+      "url": "https://www.last.fm/music/Akon/_/Pot+of+Gold"
+    },
+    {
+      "albumName": "My World 2.0",
+      "artistName": "Justin Bieber",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cc2b72b088bdc3beb0cdb7636fbe02bb.png",
+      "url": "https://www.last.fm/music/Justin+Bieber/_/Baby"
+    },
+    {
+      "albumName": "Led Zeppelin IV (Remaster)",
+      "artistName": "Led Zeppelin",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9a2226ad18aa11629db1e8f2f306a43a.gif",
+      "url": "https://www.last.fm/music/Led+Zeppelin/_/Stairway+To+Heaven+(Remaster)"
+    },
+    {
+      "albumName": "The Cost Of Living - EP",
+      "artistName": "The Clash",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c617b9cca499311b5c21a128e9318817.jpg",
+      "url": "https://www.last.fm/music/The+Clash/_/I+Fought+the+Law"
+    },
+    {
+      "albumName": "Wreck-It Ralph",
+      "artistName": "Owl City",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1a7d8030afa30b10e26094a1a4254a42.jpg",
+      "url": "https://www.last.fm/music/Owl+City/_/When+Can+I+See+You+Again%3F"
+    },
+    {
+      "albumName": "Interstellar (Original Motion Picture Soundtrack) [Expanded Edition]",
+      "artistName": "Hans Zimmer",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/4d6322c6d784708fd7723b991714e51d.jpg",
+      "url": "https://www.last.fm/music/Hans+Zimmer/_/Where+We%27re+Going"
+    },
+    {
+      "albumName": "Heroes",
+      "artistName": "David Bowie",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b46a670fb10f10de21e1f41251caa5e6.png",
+      "url": "https://www.last.fm/music/David+Bowie/_/Heroes+(1999+Digital+Remaster)"
+    },
+    {
+      "albumName": "Led Zeppelin (Remaster)",
+      "artistName": "Led Zeppelin",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c1274266948cc9125f87490e1585ced4.gif",
+      "url": "https://www.last.fm/music/Led+Zeppelin/_/Good+Times+Bad+Times+(remaster)"
+    },
+    {
+      "albumName": "The Truth About Love",
+      "artistName": "P!nk; Nate Ruess",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cfb93405716d049a337433c2531ae6f9.png",
+      "url": "https://www.last.fm/music/P!nk;+Nate+Ruess/_/Just+Give+Me+A+Reason+(feat.+Nate+Ruess)"
+    },
+    {
+      "albumName": "OK Computer OKNOTOK 1997 2017",
+      "artistName": "Radiohead",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/51214507c81379cd2ae8a0d77f1e0f29.jpg",
+      "url": "https://www.last.fm/music/Radiohead/_/Lift"
+    },
+    {
+      "albumName": "A Night At The Opera (Deluxe Remastered Version)",
+      "artistName": "Queen",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/0100143620622a439c981a960394d83e.jpg",
+      "url": "https://www.last.fm/music/Queen/_/Keep+Yourself+Alive+(Long+Lost+Retake+%2F+June+1975+%2F+Remastered+2011)"
+    },
+    {
+      "albumName": "MTV Unplugged",
+      "artistName": "The Cranberries",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/770c29a4f203dc574cc4411055895aa6.jpg",
+      "url": "https://www.last.fm/music/The+Cranberries/_/Ode+To+My+Family+(Live)"
+    },
+    {
+      "albumName": "Familiar to Millions",
+      "artistName": "Oasis",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1fcfaf10b2ac43429ed5801ea199848c.png",
+      "url": "https://www.last.fm/music/Oasis/_/Acquiesce"
+    },
+    {
+      "albumName": "Westworld (Music from the HBO® Series - Season 1)",
+      "artistName": "Ramin Djawadi",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b131fa8350a6937401f895642b66d192.jpg",
+      "url": "https://www.last.fm/music/Ramin+Djawadi/_/Sweetwater"
+    },
+    {
+      "albumName": "Viva la Vida or Death and All His Friends",
+      "artistName": "Coldplay",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/df7ea51b2826b60175d4c332e0f7b8ca.jpg",
+      "url": "https://www.last.fm/music/Coldplay/_/Viva+la+Vida"
+    },
+    {
+      "albumName": "In Utero",
+      "artistName": "Nirvana",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f8b772fdce8284a7c20cc254c7b32796.png",
+      "url": "https://www.last.fm/music/Nirvana/_/All+Apologies"
+    },
+    {
+      "albumName": "V (Deluxe)",
+      "artistName": "Adam Levine",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9dcbbb2587be11cca47d21f0619b49df.jpg",
+      "url": "https://www.last.fm/music/Adam+Levine/_/Lost+Stars"
+    },
+    {
+      "albumName": "Some Nights (Deluxe)",
+      "artistName": "fun.",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/a45ab918a0b52411bd5a20abbd884e6c.jpg",
+      "url": "https://www.last.fm/music/fun./_/Why+Am+I+the+One+(acoustic)"
+    },
+    {
+      "albumName": "Electric Ladyland",
+      "artistName": "Jimi Hendrix",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/0db56fabb2c71d8073306d3e92b4ff3a.jpg",
+      "url": "https://www.last.fm/music/Jimi+Hendrix/_/All+Along+the+Watchtower"
+    },
+    {
+      "albumName": "深呼吸",
+      "artistName": "ハナレグミ",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9a42128de7802f5300be106a2e0797bd.jpg",
+      "url": "https://www.last.fm/music/%E3%83%8F%E3%83%8A%E3%83%AC%E3%82%B0%E3%83%9F/_/%E6%B7%B1%E5%91%BC%E5%90%B8+(%E9%81%A0%E6%85%AE%E3%81%99%E3%82%93%E3%81%AA%E3%82%88%E3%83%9F%E3%82%BA%E3%83%8E%E8%B2%B7%E3%81%A3%E3%81%A6%E3%82%84%E3%82%8B%E3%82%88+!+ver.)"
+    },
+    {
+      "albumName": "Diana Ross Presents the Jackson 5",
+      "artistName": "The Jackson 5",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/77cef2848f424752b83d98bcd0802dfb.png",
+      "url": "https://www.last.fm/music/The+Jackson+5/_/I+Want+You+Back"
+    },
+    {
+      "albumName": "Loud",
+      "artistName": "Rihanna",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cee5b95414736f9297b94e11d3b9976b.png",
+      "url": "https://www.last.fm/music/Rihanna/_/What%27s+My+Name%3F"
+    },
+    {
+      "albumName": "The Blueprint 3",
+      "artistName": "Jay Z; Rihanna; Kanye West",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/85917c40d744fbe5aad91f7bbbaa1193.jpg",
+      "url": "https://www.last.fm/music/Jay+Z;+Rihanna;+Kanye+West/_/Run+this+town"
+    },
+    {
+      "albumName": "David Bowie (aka Space Oddity)",
+      "artistName": "David Bowie",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/0be38a77b6aa47f5ce7ecf0230d2f907.jpg",
+      "url": "https://www.last.fm/music/David+Bowie/_/Space+Oddity"
+    },
+    {
+      "albumName": "Appetite For Destruction (Super Deluxe)",
+      "artistName": "Guns N' Roses",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b3e2ceabb283a08bbb69f08241035279.jpg",
+      "url": "https://www.last.fm/music/Guns+N%27+Roses/_/Sweet+Child+o%27+Mine"
+    },
+    {
+      "albumName": "JACKY CHEUNG 15",
+      "artistName": "張學友",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/79b05be2d7b588ac1b63589792e60eaa.jpg",
+      "url": "https://www.last.fm/music/%E5%BC%B5%E5%AD%B8%E5%8F%8B/_/Amour"
+    },
+    {
+      "albumName": "我生",
+      "artistName": "古巨基",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/6b835a30cad1dcfbed2b36740f79338e.png",
+      "url": "https://www.last.fm/music/%E5%8F%A4%E5%B7%A8%E5%9F%BA/_/%E7%88%B1%E5%BE%97%E5%A4%AA%E8%BF%9F"
+    },
+    {
+      "albumName": "大雄",
+      "artistName": "古巨基",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c70aa8929f6d4e0f86ce0beaac4b6cd5.png",
+      "url": "https://www.last.fm/music/%E5%8F%A4%E5%B7%A8%E5%9F%BA/_/%E4%BC%A4%E8%BF%BD%E4%BA%BA"
+    },
     {
       "albumName": "後 青春期的詩",
       "artistName": "五月天",
@@ -156,258 +564,6 @@
       "url": "https://www.last.fm/music/%E7%8E%8B%E8%8B%A5%E7%90%B3/_/You%27ve+Got+a+Friend+(Acoustic+version)"
     },
     {
-      "albumName": "Start From Here",
-      "artistName": "王若琳",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c7149c71944bbab958904ccd0919c8a0.jpg",
-      "url": "https://www.last.fm/music/%E7%8E%8B%E8%8B%A5%E7%90%B3/_/%E6%9C%89%E4%BD%A0%E7%9A%84%E5%BF%AB%E4%B9%90"
-    },
-    {
-      "albumName": "2006王力宏蓋世英雄演唱會影音全記錄",
-      "artistName": "王力宏",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2b3cfa814b5b6978f449aeb8f24b8fb3.jpg",
-      "url": "https://www.last.fm/music/%E7%8E%8B%E5%8A%9B%E5%AE%8F/_/%E8%8A%B1%E7%94%B0%E9%8C%AF"
-    },
-    {
-      "albumName": "15 Khalil Fong Live In Hong Kong 2011",
-      "artistName": "方大同",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/681f3971d15e9c3046a7bcfae151af50.jpg",
-      "url": "https://www.last.fm/music/%E6%96%B9%E5%A4%A7%E5%90%8C/_/Singalongsong+(15+Khalil+Live)"
-    },
-    {
-      "albumName": "杰伦",
-      "artistName": "周杰倫",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/92bcd3e101068eaacef6078e05f77aa4.jpg",
-      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/_/%E5%A8%98%E5%AD%90"
-    },
-    {
-      "albumName": "魔杰座",
-      "artistName": "周杰倫",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/aeb6f3284cc6bff7e8ad8fbceaa3ee42.jpg",
-      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/_/%E8%AF%B4%E5%A5%BD%E7%9A%84%E5%B9%B8%E7%A6%8F%E5%91%A2"
-    },
-    {
-      "albumName": "范特西",
-      "artistName": "周杰倫",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9ab0d13243ee6334e2bdb978a19c50b8.jpg",
-      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/_/%E5%AE%89%E9%9D%99"
-    },
-    {
-      "albumName": "11月的萧邦",
-      "artistName": "周杰倫",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/526afb8cd8115f247ec21bf1838672f1.jpg",
-      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/_/%E7%8F%8A%E7%91%9A%E6%B5%B7+(Feat.+%E6%A2%81%E5%BF%83%E9%A2%90)"
-    },
-    {
-      "albumName": "七里香",
-      "artistName": "周杰倫",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8cc09636be566a39be4a2c1d2a4aae20.jpg",
-      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/_/%E4%B8%83%E9%87%8C%E9%A6%99"
-    },
-    {
-      "albumName": "叶惠美",
-      "artistName": "周杰倫",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2c4902e08b5cf3303ed306bf20e6f25b.jpg",
-      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/_/%E6%99%B4%E5%A4%A9"
-    },
-    {
-      "albumName": "Coming Up (Deluxe Edition)",
-      "artistName": "Suede",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/617f35da043e40e9ad4ba33910b74a2d.jpg",
-      "url": "https://www.last.fm/music/Suede/_/Beautiful+Ones"
-    },
-    {
-      "albumName": "MAKE UP",
-      "artistName": "楊千嬅",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/14943a989bd5984594aec9c1d6f3fd93.jpg",
-      "url": "https://www.last.fm/music/%E6%A5%8A%E5%8D%83%E5%AC%85/_/%E9%A3%9B%E5%A5%B3%E6%AD%A3%E5%82%B3"
-    },
-    {
-      "albumName": "MIRIAM'S MUSIC BOX",
-      "artistName": "楊千嬅",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9341c0f0c0a342fa80436177d25173e1.png",
-      "url": "https://www.last.fm/music/%E6%A5%8A%E5%8D%83%E5%AC%85/_/%E5%8F%AF%E6%83%9C%E6%88%91%E6%98%AF%E6%B0%B4%E7%93%B6%E5%BA%A7"
-    },
-    {
-      "albumName": "MIRIAM",
-      "artistName": "楊千嬅",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1f05eafa630d269433f03f41f56a8366.jpg",
-      "url": "https://www.last.fm/music/%E6%A5%8A%E5%8D%83%E5%AC%85/_/%E9%87%8E%E5%AD%A9%E5%AD%90"
-    },
-    {
-      "albumName": "Electric Girl",
-      "artistName": "楊千嬅",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b5c6262f551237622f0f8b3d202335e2.jpg",
-      "url": "https://www.last.fm/music/%E6%A5%8A%E5%8D%83%E5%AC%85/_/%E5%B0%8F%E5%9F%8E%E5%A4%A7%E4%BA%8B"
-    },
-    {
-      "albumName": "Head Music (Deluxe Edition)",
-      "artistName": "Suede",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/84b2a9b2cd035f71d92ed2c59e7d890c.jpg",
-      "url": "https://www.last.fm/music/Suede/_/Everything+Will+Flow"
-    },
-    {
-      "albumName": "Bloodsports (Deluxe Edition)",
-      "artistName": "Suede",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9b5406db2909e79b59f6b5c5823601a7.jpg",
-      "url": "https://www.last.fm/music/Suede/_/It+Starts+and+Ends+With+You"
-    },
-    {
-      "albumName": "One On One",
-      "artistName": "楊千嬅",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/042173ab8b5847ea4360e98054580dcb.jpg",
-      "url": "https://www.last.fm/music/%E6%A5%8A%E5%8D%83%E5%AC%85/_/%E5%86%8D%E8%A6%8B%E4%BA%8C%E4%B8%81%E7%9B%AE"
-    },
-    {
-      "albumName": "遊戲 基",
-      "artistName": "古巨基",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/364e637040cc56787dd7d7cae360c696.jpg",
-      "url": "https://www.last.fm/music/%E5%8F%A4%E5%B7%A8%E5%9F%BA/_/%E6%84%9B%E7%A5%9E"
-    },
-    {
-      "albumName": "Binary",
-      "artistName": "謝安琪",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9a6b4a74d65549b1ae1d47c729344ce6.jpg",
-      "url": "https://www.last.fm/music/%E8%AC%9D%E5%AE%89%E7%90%AA/_/%E5%9B%8D%E5%B8%96%E8%A1%97"
-    },
-    {
-      "albumName": "天空",
-      "artistName": "王菲",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2fb70b3989da2b819ed595b03dd6a2dd.png",
-      "url": "https://www.last.fm/music/%E7%8E%8B%E8%8F%B2/_/%E7%9F%9C%E6%8C%81"
-    },
-    {
-      "albumName": "愛情合約 電視原聲帶",
-      "artistName": "林依晨",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1775f39eec8a7168ece05f60404f919e.jpg",
-      "url": "https://www.last.fm/music/%E6%9E%97%E4%BE%9D%E6%99%A8/_/%E5%AD%A4%E5%96%AE%E5%8C%97%E5%8D%8A%E7%90%83"
-    },
-    {
-      "albumName": "為愛走天涯",
-      "artistName": "任賢齊",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2a8d4893de787e31f1a90a0693b05222.jpg",
-      "url": "https://www.last.fm/music/%E4%BB%BB%E8%B3%A2%E9%BD%8A/_/%E6%98%A5%E5%A4%A9%E8%8A%B1%E6%9C%83%E9%96%8B"
-    },
-    {
-      "albumName": "天之大",
-      "artistName": "Fei Yu-Ching",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/e74510b8b3ecaf0f95d0c80f159a5f45.jpg",
-      "url": "https://www.last.fm/music/Fei+Yu-Ching/_/%E4%B8%80%E7%BF%A6%E6%A2%85"
-    },
-    {
-      "albumName": "遺憾",
-      "artistName": "Mavis Hee",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/4e1ba4f2e9a0fd017a306c0852fa8d20.jpg",
-      "url": "https://www.last.fm/music/Mavis+Hee/_/%E9%81%BA%E6%86%BE"
-    },
-    {
-      "albumName": "First Love",
-      "artistName": "宇多田ヒカル",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b68ccc333803c6475793b812dafe770b.jpg",
-      "url": "https://www.last.fm/music/%E5%AE%87%E5%A4%9A%E7%94%B0%E3%83%92%E3%82%AB%E3%83%AB/_/First+Love"
-    },
-    {
-      "albumName": "我鐘意 梁詠琪新曲+精選36首",
-      "artistName": "梁詠琪",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/57e4d411b55627dc9c004ffea479ad9c.jpg",
-      "url": "https://www.last.fm/music/%E6%A2%81%E8%A9%A0%E7%90%AA/_/%E8%8A%B1%E7%81%AB"
-    },
-    {
-      "albumName": "Dream Field",
-      "artistName": "See-Saw",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8fa2d7fc29284902cb4ab015193f8fb7.jpg",
-      "url": "https://www.last.fm/music/See-Saw/_/%E3%81%82%E3%82%93%E3%81%AA%E3%81%AB%E4%B8%80%E7%B7%92%E3%81%A0%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%AB"
-    },
-    {
-      "albumName": "Greeting",
-      "artistName": "玉置成実",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1f6ac1536c6f6b31120d5691addedf12.jpg",
-      "url": "https://www.last.fm/music/%E7%8E%89%E7%BD%AE%E6%88%90%E5%AE%9F/_/Realize"
-    },
-    {
-      "albumName": "Believe - From THE FIRST TAKE",
-      "artistName": "Nami Tamaki",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/a9ff512f5e18e4cd45a256a8623697c4.jpg",
-      "url": "https://www.last.fm/music/Nami+Tamaki/_/Believe+-+From+THE+FIRST+TAKE"
-    },
-    {
-      "albumName": "SINGularity Ⅲ -VOYAGE-",
-      "artistName": "Takanori Nishikawa",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/28f042ae0937d65f735ef3522a471960.jpg",
-      "url": "https://www.last.fm/music/Takanori+Nishikawa/_/BEYOND+THE+TIME-%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9%E3%81%AE%E5%AE%87%E5%AE%99%E3%82%92%E8%B6%8A%E3%81%88%E3%81%A6-"
-    },
-    {
-      "albumName": "BEYOND THE TIME (メビウスの宇宙を越えて) -2025 Version-",
-      "artistName": "TM NETWORK",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c59ffc61c40be0700dd7852708a4dfce.jpg",
-      "url": "https://www.last.fm/music/TM+NETWORK/_/BEYOND+THE+TIME+(%E3%83%A1%E3%83%93%E3%82%A6%E3%82%B9%E3%81%AE%E5%AE%87%E5%AE%99%E3%82%92%E8%B6%8A%E3%81%88%E3%81%A6)+-2025+Short+Edit-"
-    },
-    {
-      "albumName": "もうどうなってもいいや",
-      "artistName": "Hoshimachi Suisei",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/838e1ed2511fdc2bc58327462b0ad353.jpg",
-      "url": "https://www.last.fm/music/Hoshimachi+Suisei/_/%E3%82%82%E3%81%86%E3%81%A9%E3%81%86%E3%81%AA%E3%81%A3%E3%81%A6%E3%82%82%E3%81%84%E3%81%84%E3%82%84"
-    },
-    {
-      "albumName": "HALO",
-      "artistName": "NOMELON NOLEMON",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2ef9470606b593ad40a9628a1b7cf356.jpg",
-      "url": "https://www.last.fm/music/NOMELON+NOLEMON/_/HALO"
-    },
-    {
-      "albumName": "Plazma",
-      "artistName": "Kenshi Yonezu",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9798b5faef8b9e6c0c66f087c52e4fc2.jpg",
-      "url": "https://www.last.fm/music/Kenshi+Yonezu/_/Plazma"
-    },
-    {
-      "albumName": "閃光",
-      "artistName": "[Alexandros]",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/ad6817d6d8a782eff055f312a3d53d5a.png",
-      "url": "https://www.last.fm/music/%5BAlexandros%5D/_/%E9%96%83%E5%85%89"
-    },
-    {
-      "albumName": "aLIEz - From THE FIRST TAKE",
-      "artistName": "SawanoHiroyuki[nZk]",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/90828be4423d8c9f935ff4830692b757.jpg",
-      "url": "https://www.last.fm/music/SawanoHiroyuki%5BnZk%5D/_/aLIEz+-+From+THE+FIRST+TAKE"
-    },
-    {
-      "albumName": "青い栞 - From THE FIRST TAKE",
-      "artistName": "Galileo Galilei",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b6ab3706fcf42f6e383aad8c317d5469.jpg",
-      "url": "https://www.last.fm/music/Galileo+Galilei/_/%E9%9D%92%E3%81%84%E6%A0%9E+-+From+THE+FIRST+TAKE"
-    },
-    {
-      "albumName": "給十年後的我",
-      "artistName": "薛凱琪",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8b0d740fc32ba34b444ff317f6c82833.jpg",
-      "url": "https://www.last.fm/music/%E8%96%9B%E5%87%B1%E7%90%AA/_/%E5%A5%87%E6%B4%9B%E6%9D%8E%E7%B6%AD%E6%96%AF%E5%9B%9E%E4%BF%A1"
-    },
-    {
-      "albumName": "Ultimate Piano Classics",
-      "artistName": "András Schiff",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/911c0645d67d495e895cd91f09252a32.jpg",
-      "url": "https://www.last.fm/music/Andr%C3%A1s+Schiff/_/Mendelssohn:+Lieder+ohne+Worte,+Op.+67:+4.+Presto+%22The+Bee%27s+Wedding%22"
-    },
-    {
-      "albumName": "First Love - From THE FIRST TAKE",
-      "artistName": "Hikaru Utada",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7781ad5688ddcd1258d75ff458eb93d0.jpg",
-      "url": "https://www.last.fm/music/Hikaru+Utada/_/First+Love+-+From+THE+FIRST+TAKE"
-    },
-    {
-      "albumName": "Ravel: Bolero / Daphnis Et Chloë",
-      "artistName": "London Symphony Orchestra; Arpád Jóo",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b9bc15dfb4364aa991b1e73fd36ad282.jpg",
-      "url": "https://www.last.fm/music/London+Symphony+Orchestra;+Arp%C3%A1d+J%C3%B3o/_/Bol%C3%A9ro+(Ravel)"
-    },
-    {
-      "albumName": "The Bends (Collector's Edition)",
-      "artistName": "Radiohead",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/81bd284ca2532f25d402b1b59f1a8dc6.jpg",
-      "url": "https://www.last.fm/music/Radiohead/The+Bends+(Collector%27s+Edition)"
-    },
-    {
       "albumName": "Pablo Honey",
       "artistName": "Radiohead",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/38479c05afc2a5c6e2e621b6c3ac7de5.png",
@@ -420,16 +576,10 @@
       "url": "https://www.last.fm/music/Hans+Zimmer/Interstellar+(Original+Motion+Picture+Soundtrack)"
     },
     {
-      "albumName": "OK Computer",
-      "artistName": "Radiohead",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/62d26c6cb4ac4bdccb8f3a2a0fd55421.png",
-      "url": "https://www.last.fm/music/Radiohead/OK+Computer"
-    },
-    {
-      "albumName": "Kid A",
-      "artistName": "Radiohead",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2ed343318c844d19cd897ec67fad11c4.png",
-      "url": "https://www.last.fm/music/Radiohead/Kid+A"
+      "albumName": "Ultimate Piano Classics",
+      "artistName": "Various Artists",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/911c0645d67d495e895cd91f09252a32.jpg",
+      "url": "https://www.last.fm/music/Various+Artists/Ultimate+Piano+Classics"
     },
     {
       "albumName": "活出生命LIVE演唱會",
@@ -438,40 +588,22 @@
       "url": "https://www.last.fm/music/%E5%BC%B5%E5%AD%B8%E5%8F%8B/%E6%B4%BB%E5%87%BA%E7%94%9F%E5%91%BDLIVE%E6%BC%94%E5%94%B1%E6%9C%83"
     },
     {
-      "albumName": "Hail to the Thief",
-      "artistName": "Radiohead",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/55ac8f97bde6cbe5e9a8857b435457e9.jpg",
-      "url": "https://www.last.fm/music/Radiohead/Hail+to+the+Thief"
-    },
-    {
       "albumName": "只爱陌生人",
       "artistName": "王菲",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/11254fb0458b623fbb586feda4888546.jpg",
       "url": "https://www.last.fm/music/%E7%8E%8B%E8%8F%B2/%E5%8F%AA%E7%88%B1%E9%99%8C%E7%94%9F%E4%BA%BA"
     },
     {
-      "albumName": "All Eyez on Me",
-      "artistName": "2Pac",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8bd696cbd4aa4d4eb6d35393232f55e4.png",
-      "url": "https://www.last.fm/music/2Pac/All+Eyez+on+Me"
+      "albumName": "七里香",
+      "artistName": "周杰倫",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8cc09636be566a39be4a2c1d2a4aae20.jpg",
+      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/%E4%B8%83%E9%87%8C%E9%A6%99"
     },
     {
       "albumName": "In Rainbows",
       "artistName": "Radiohead",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9dbcd9399ac3e622b4f508323155b644.jpg",
       "url": "https://www.last.fm/music/Radiohead/In+Rainbows"
-    },
-    {
-      "albumName": "Amnesiac",
-      "artistName": "Radiohead",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/d59fb77b86ba4dd5d7f99c34564a56ce.jpg",
-      "url": "https://www.last.fm/music/Radiohead/Amnesiac"
-    },
-    {
-      "albumName": "EVANGELION:DEATH",
-      "artistName": "鷺巣詩郎",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cf3372bb7bdf4611bd10f00d4a7285fc.png",
-      "url": "https://www.last.fm/music/%E9%B7%BA%E5%B7%A3%E8%A9%A9%E9%83%8E/EVANGELION:DEATH"
     },
     {
       "albumName": "Westworld: Season 2",
@@ -486,22 +618,10 @@
       "url": "https://www.last.fm/music/Hans+Zimmer/Inception"
     },
     {
-      "albumName": "MTV Unplugged",
-      "artistName": "Oasis",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/92329f20e22257d804a95e7e75fe3f15.jpg",
-      "url": "https://www.last.fm/music/Oasis/MTV+Unplugged"
-    },
-    {
-      "albumName": "Some Nights",
-      "artistName": "fun.",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c643374762104e128456da5edfc12e5e.png",
-      "url": "https://www.last.fm/music/fun./Some+Nights"
-    },
-    {
-      "albumName": "Radiohead for Solo Piano",
-      "artistName": "Josh Cohen",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f3b69e5febeeff294aed4b79b76aad3c.jpg",
-      "url": "https://www.last.fm/music/Josh+Cohen/Radiohead+for+Solo+Piano"
+      "albumName": "范特西",
+      "artistName": "周杰倫",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9ab0d13243ee6334e2bdb978a19c50b8.jpg",
+      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/%E8%8C%83%E7%89%B9%E8%A5%BF"
     },
     {
       "albumName": "Live In Berlin 07/04/00",
@@ -514,6 +634,12 @@
       "artistName": "澤野弘之",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2206748bbeb04c31cced2570d6d925f6.png",
       "url": "https://www.last.fm/music/%E6%BE%A4%E9%87%8E%E5%BC%98%E4%B9%8B/%E6%A9%9F%E5%8B%95%E6%88%A6%E5%A3%AB%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0UC+%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%8A%E3%83%AB%E3%83%BB%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89%E3%83%88%E3%83%A9%E3%83%83%E3%82%AF"
+    },
+    {
+      "albumName": "魔杰座",
+      "artistName": "周杰倫",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/aeb6f3284cc6bff7e8ad8fbceaa3ee42.jpg",
+      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/%E9%AD%94%E6%9D%B0%E5%BA%A7"
     },
     {
       "albumName": "Music Box: 30th Anniversary Edition",
@@ -540,18 +666,6 @@
       "url": "https://www.last.fm/music/Eminence+Symphony+Orchestra/Promise"
     },
     {
-      "albumName": "Interstellar (Original Motion Picture Soundtrack) [Expanded Edition]",
-      "artistName": "Hans Zimmer",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/4d6322c6d784708fd7723b991714e51d.jpg",
-      "url": "https://www.last.fm/music/Hans+Zimmer/Interstellar+(Original+Motion+Picture+Soundtrack)+%5BExpanded+Edition%5D"
-    },
-    {
-      "albumName": "Blur: The Best Of",
-      "artistName": "Blur",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f003d2e7c704fa146eca3a04e0db51a9.jpg",
-      "url": "https://www.last.fm/music/Blur/Blur:+The+Best+Of"
-    },
-    {
       "albumName": "言ノ葉",
       "artistName": "秦基博",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/5785ee50273e4beacb4cb45aaad6bcd8.png",
@@ -576,6 +690,12 @@
       "url": "https://www.last.fm/music/%E6%A2%81%E9%9D%9C%E8%8C%B9/%E6%84%9B%E7%9A%84%E5%A4%A7%E9%81%8A%E8%A1%8CLive%E5%85%A8%E8%A8%98%E9%8C%84"
     },
     {
+      "albumName": "叶惠美",
+      "artistName": "周杰倫",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2c4902e08b5cf3303ed306bf20e6f25b.jpg",
+      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/%E5%8F%B6%E6%83%A0%E7%BE%8E"
+    },
+    {
       "albumName": "Ultimate Beethoven: The Essential Masterpieces",
       "artistName": "Ludwig van Beethoven",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b72ef8091040edf846eac69556e6a21e.jpg",
@@ -594,12 +714,6 @@
       "url": "https://www.last.fm/music/%E7%8E%8B%E8%8F%B2/%E7%8E%8B%E8%8F%B21997"
     },
     {
-      "albumName": "Viva la Vida or Death and All His Friends",
-      "artistName": "Coldplay",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/df7ea51b2826b60175d4c332e0f7b8ca.jpg",
-      "url": "https://www.last.fm/music/Coldplay/Viva+la+Vida+or+Death+and+All+His+Friends"
-    },
-    {
       "albumName": "Jay",
       "artistName": "周杰倫",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/183b7664a26df2435edf0d12896c2dd3.jpg",
@@ -610,12 +724,6 @@
       "artistName": "Guns N' Roses",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/999bd04e51ef97487574f150463ec119.png",
       "url": "https://www.last.fm/music/Guns+N%27+Roses/Live+Era+%2787-%2793"
-    },
-    {
-      "albumName": "OK Computer OKNOTOK 1997 2017",
-      "artistName": "Radiohead",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/51214507c81379cd2ae8a0d77f1e0f29.jpg",
-      "url": "https://www.last.fm/music/Radiohead/OK+Computer+OKNOTOK+1997+2017"
     },
     {
       "albumName": "Led Zeppelin",
@@ -642,12 +750,6 @@
       "url": "https://www.last.fm/music/Radiohead/A+Moon+Shaped+Pool"
     },
     {
-      "albumName": "My Beautiful Dark Twisted Fantasy",
-      "artistName": "Kanye West",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8a071c4b073625018de5f0ac58727511.png",
-      "url": "https://www.last.fm/music/Kanye+West/My+Beautiful+Dark+Twisted+Fantasy"
-    },
-    {
       "albumName": "Planet Acoustic",
       "artistName": "Radiohead",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/31ec1b7bf770471181eb216a8f05a09f.jpg",
@@ -658,12 +760,6 @@
       "artistName": "Coldplay",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/a61e3c7b85303555ebac49fa460a17c3.png",
       "url": "https://www.last.fm/music/Coldplay/A+Rush+of+Blood+to+the+Head"
-    },
-    {
-      "albumName": "Parachutes",
-      "artistName": "Coldplay",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/5fbcfb7258117e88cb73b45e25c88b01.jpg",
-      "url": "https://www.last.fm/music/Coldplay/Parachutes"
     },
     {
       "albumName": "Silence",
@@ -702,18 +798,6 @@
       "url": "https://www.last.fm/music/%E7%8E%8B%E5%8A%9B%E5%AE%8F/%E5%BF%83%E4%B8%AD%E7%9A%84%E6%97%A5%E6%9C%88"
     },
     {
-      "albumName": "Trouble Deluxe Edition",
-      "artistName": "Akon",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/61d834acf4be21399256f014e7cd7358.jpg",
-      "url": "https://www.last.fm/music/Akon/Trouble+Deluxe+Edition"
-    },
-    {
-      "albumName": "21",
-      "artistName": "Adele",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7694508c2aa520df08bb8e6248bfedf0.png",
-      "url": "https://www.last.fm/music/Adele/21"
-    },
-    {
       "albumName": "只愛陌生人",
       "artistName": "王菲",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/74266437ffd87c0e347e7c5a871bd454.png",
@@ -724,12 +808,6 @@
       "artistName": "方大同",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/4c0351b0a56c9d2775532e802b79e6af.jpg",
       "url": "https://www.last.fm/music/%E6%96%B9%E5%A4%A7%E5%90%8C/%E6%A9%99%E6%9C%88"
-    },
-    {
-      "albumName": "Westworld (Music from the HBO® Series - Season 1)",
-      "artistName": "Ramin Djawadi",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b131fa8350a6937401f895642b66d192.jpg",
-      "url": "https://www.last.fm/music/Ramin+Djawadi/Westworld+(Music+from+the+HBO%C2%AE+Series+-+Season+1)"
     },
     {
       "albumName": "心跳",
@@ -748,12 +826,6 @@
       "artistName": "The Beatles",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/ce325ef356c227141d680fa3b7af7f0b.jpg",
       "url": "https://www.last.fm/music/The+Beatles/The+Beatles+1"
-    },
-    {
-      "albumName": "In Utero",
-      "artistName": "Nirvana",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f8b772fdce8284a7c20cc254c7b32796.png",
-      "url": "https://www.last.fm/music/Nirvana/In+Utero"
     },
     {
       "albumName": "李宗盛的理性与感性作品音乐会",
@@ -810,10 +882,22 @@
       "url": "https://www.last.fm/music/vkgoeswild/Warm+Place"
     },
     {
+      "albumName": "杰伦",
+      "artistName": "周杰倫",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/92bcd3e101068eaacef6078e05f77aa4.jpg",
+      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/%E6%9D%B0%E4%BC%A6"
+    },
+    {
       "albumName": "機動戦士ガンダムUC オリジナルサウンドトラック4",
       "artistName": "澤野弘之",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/252812e825ba1e9c6fb1b901e605877f.jpg",
       "url": "https://www.last.fm/music/%E6%BE%A4%E9%87%8E%E5%BC%98%E4%B9%8B/%E6%A9%9F%E5%8B%95%E6%88%A6%E5%A3%AB%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0UC+%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%8A%E3%83%AB%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89%E3%83%88%E3%83%A9%E3%83%83%E3%82%AF4"
+    },
+    {
+      "albumName": "我鐘意 梁詠琪新曲+精選36首",
+      "artistName": "Gigi Leung",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/57e4d411b55627dc9c004ffea479ad9c.jpg",
+      "url": "https://www.last.fm/music/Gigi+Leung/%E6%88%91%E9%90%98%E6%84%8F+%E6%A2%81%E8%A9%A0%E7%90%AA%E6%96%B0%E6%9B%B2%252B%E7%B2%BE%E9%81%B836%E9%A6%96"
     },
     {
       "albumName": "The Best Of",
@@ -840,10 +924,16 @@
       "url": "https://www.last.fm/music/%E7%8E%8B%E8%8F%B2/%E7%8E%8B%E8%8F%B297"
     },
     {
-      "albumName": "オリジナル・サウンドトラック「機動戦士ガンダム サンダーボルト」/菊地成孔",
-      "artistName": "菊地成孔",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/82f1a7d214b6a823d53cc61b80e4e588.jpg",
-      "url": "https://www.last.fm/music/%E8%8F%8A%E5%9C%B0%E6%88%90%E5%AD%94/%E3%82%AA%E3%83%AA%E3%82%B8%E3%83%8A%E3%83%AB%E3%83%BB%E3%82%B5%E3%82%A6%E3%83%B3%E3%83%89%E3%83%88%E3%83%A9%E3%83%83%E3%82%AF%E3%80%8C%E6%A9%9F%E5%8B%95%E6%88%A6%E5%A3%AB%E3%82%AC%E3%83%B3%E3%83%80%E3%83%A0+%E3%82%B5%E3%83%B3%E3%83%80%E3%83%BC%E3%83%9C%E3%83%AB%E3%83%88%E3%80%8D%2F%E8%8F%8A%E5%9C%B0%E6%88%90%E5%AD%94"
+      "albumName": "Start From Here",
+      "artistName": "王若琳",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c7149c71944bbab958904ccd0919c8a0.jpg",
+      "url": "https://www.last.fm/music/%E7%8E%8B%E8%8B%A5%E7%90%B3/Start+From+Here"
+    },
+    {
+      "albumName": "11月的萧邦",
+      "artistName": "周杰倫",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/526afb8cd8115f247ec21bf1838672f1.jpg",
+      "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/11%E6%9C%88%E7%9A%84%E8%90%A7%E9%82%A6"
     },
     {
       "albumName": "Promise",
@@ -862,12 +952,6 @@
       "artistName": "王力宏",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/22f16e66dc7084050f0ac1a8e897e5d6.jpg",
       "url": "https://www.last.fm/music/%E7%8E%8B%E5%8A%9B%E5%AE%8F/%E4%B8%8D%E5%8F%AF%E6%80%9D%E8%AE%AE"
-    },
-    {
-      "albumName": "The Blueprint (Explicit Version)",
-      "artistName": "JAY-Z",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/443569610c07522548fc9099652159c3.png",
-      "url": "https://www.last.fm/music/JAY-Z/The+Blueprint+(Explicit+Version)"
     },
     {
       "albumName": "La La Land (Original Motion Picture Soundtrack)",
@@ -894,6 +978,12 @@
       "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/%E5%8D%81%E4%BA%8C%E6%96%B0%E4%BD%9C"
     },
     {
+      "albumName": "2006王力宏蓋世英雄演唱會影音全記錄",
+      "artistName": "王力宏",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2b3cfa814b5b6978f449aeb8f24b8fb3.jpg",
+      "url": "https://www.last.fm/music/%E7%8E%8B%E5%8A%9B%E5%AE%8F/2006%E7%8E%8B%E5%8A%9B%E5%AE%8F%E8%93%8B%E4%B8%96%E8%8B%B1%E9%9B%84%E6%BC%94%E5%94%B1%E6%9C%83%E5%BD%B1%E9%9F%B3%E5%85%A8%E8%A8%98%E9%8C%84"
+    },
+    {
       "albumName": "The King of Limbs",
       "artistName": "Radiohead",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/f47f0408a925403cbea2564add58000f.png",
@@ -916,12 +1006,6 @@
       "artistName": "孫燕姿",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9bea775172eb6c3e4c12118f016b4566.jpg",
       "url": "https://www.last.fm/music/%E5%AD%AB%E7%87%95%E5%A7%BF/%E5%AE%8C%E7%BE%8E%E7%9A%84%E4%B8%80%E5%A4%A9"
-    },
-    {
-      "albumName": "JACKY CHEUNG 15",
-      "artistName": "張學友",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/79b05be2d7b588ac1b63589792e60eaa.jpg",
-      "url": "https://www.last.fm/music/%E5%BC%B5%E5%AD%B8%E5%8F%8B/JACKY+CHEUNG+15"
     },
     {
       "albumName": "我去2000年",
@@ -984,16 +1068,16 @@
       "url": "https://www.last.fm/music/Graham+Reynolds/Before+Midnight"
     },
     {
-      "albumName": "Inception (Music from the Motion Picture)",
-      "artistName": "Hans Zimmer",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/fe27be04693b9a1c81596bb0af0c26e1.jpg",
-      "url": "https://www.last.fm/music/Hans+Zimmer/Inception+(Music+from+the+Motion+Picture)"
-    },
-    {
       "albumName": "Late Registration",
       "artistName": "Kanye West",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9c0e7886d750a519c9ec63c30434b483.png",
       "url": "https://www.last.fm/music/Kanye+West/Late+Registration"
+    },
+    {
+      "albumName": "15 Khalil Fong Live In Hong Kong 2011",
+      "artistName": "方大同",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/681f3971d15e9c3046a7bcfae151af50.jpg",
+      "url": "https://www.last.fm/music/%E6%96%B9%E5%A4%A7%E5%90%8C/15+Khalil+Fong+Live+In+Hong+Kong+2011"
     },
     {
       "albumName": "我去2000年",
@@ -1012,12 +1096,6 @@
       "artistName": "Jacky Cheung",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/fa8f192566f49ae1ac6408be82567923.jpg",
       "url": "https://www.last.fm/music/+noredirect/Jacky+Cheung/%E5%8F%8B%E5%80%8B%E4%BA%BA%E6%BC%94%E5%94%B1%E6%9C%831999"
-    },
-    {
-      "albumName": "Rubber Soul (Remastered 2009)",
-      "artistName": "The Beatles",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/4c8ae59add023440859750e5e60e55bb.png",
-      "url": "https://www.last.fm/music/The+Beatles/Rubber+Soul+(Remastered+2009)"
     },
     {
       "albumName": "Symphonic Rock",
@@ -1110,12 +1188,6 @@
       "url": "https://www.last.fm/music/Guns+N%27+Roses/Use+Your+Illusion+I"
     },
     {
-      "albumName": "Live At Wembley Stadium",
-      "artistName": "Queen",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/e5140dd5c5267ffd7657c478819e1dc3.jpg",
-      "url": "https://www.last.fm/music/Queen/Live+At+Wembley+Stadium"
-    },
-    {
       "albumName": "The Bends",
       "artistName": "Radiohead",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9ea9931e129bb5efd3606866901855b5.jpg",
@@ -1158,12 +1230,6 @@
       "url": "https://www.last.fm/music/%E7%8E%8B%E8%8F%B2/%E5%B0%87%E6%84%9B"
     },
     {
-      "albumName": "Led Zeppelin IV (Remaster)",
-      "artistName": "Led Zeppelin",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/9a2226ad18aa11629db1e8f2f306a43a.gif",
-      "url": "https://www.last.fm/music/Led+Zeppelin/Led+Zeppelin+IV+(Remaster)"
-    },
-    {
       "albumName": "寻找周杰伦",
       "artistName": "周杰倫",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b3fabe37b18ef414e74be61c5dfb4d4d.jpg",
@@ -1186,12 +1252,6 @@
       "artistName": "陶喆",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/e6860a8e46eef90c0293735120280a8d.jpg",
       "url": "https://www.last.fm/music/%E9%99%B6%E5%96%86/%E9%BB%91%E8%89%B2%E6%9F%B3%E4%B8%81"
-    },
-    {
-      "albumName": "The Truth About Love",
-      "artistName": "P!nk",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cfb93405716d049a337433c2531ae6f9.png",
-      "url": "https://www.last.fm/music/P!nk/The+Truth+About+Love"
     },
     {
       "albumName": "Butter-Fly",
@@ -1218,12 +1278,6 @@
       "url": "https://www.last.fm/music/Christopher+O%27Riley/True+Love+Waits+(Christopher+O%27Riley+Plays+Radiohead)"
     },
     {
-      "albumName": "Led Zeppelin (Remaster)",
-      "artistName": "Led Zeppelin",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c1274266948cc9125f87490e1585ced4.gif",
-      "url": "https://www.last.fm/music/Led+Zeppelin/Led+Zeppelin+(Remaster)"
-    },
-    {
       "albumName": "Good Girl Gone Bad: Reloaded",
       "artistName": "Rihanna",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/784567e7fa05204d6b03da80b96ed3a9.png",
@@ -1234,6 +1288,12 @@
       "artistName": "Sara Lov",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/339d8ee9e4dc4b208d5e125d5aa0f0cd.png",
       "url": "https://www.last.fm/music/Sara+Lov/I+Already+Love+You"
+    },
+    {
+      "albumName": "天空",
+      "artistName": "王菲",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/2fb70b3989da2b819ed595b03dd6a2dd.png",
+      "url": "https://www.last.fm/music/%E7%8E%8B%E8%8F%B2/%E5%A4%A9%E7%A9%BA"
     },
     {
       "albumName": "Justified",
@@ -1248,12 +1308,6 @@
       "url": "https://www.last.fm/music/Nirvana/Nevermind"
     },
     {
-      "albumName": "Familiar to Millions",
-      "artistName": "Oasis",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/1fcfaf10b2ac43429ed5801ea199848c.png",
-      "url": "https://www.last.fm/music/Oasis/Familiar+to+Millions"
-    },
-    {
       "albumName": "Ready To Die (The Remaster)",
       "artistName": "The Notorious B.I.G.",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/e68c6e3706e0ececd7231e8ca10e33a8.jpg",
@@ -1266,16 +1320,16 @@
       "url": "https://www.last.fm/music/%E7%8E%8B%E5%8A%9B%E5%AE%8F/%E5%94%AF%E4%B8%80"
     },
     {
+      "albumName": "給十年後的我",
+      "artistName": "薛凱琪",
+      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/8b0d740fc32ba34b444ff317f6c82833.jpg",
+      "url": "https://www.last.fm/music/%E8%96%9B%E5%87%B1%E7%90%AA/%E7%B5%A6%E5%8D%81%E5%B9%B4%E5%BE%8C%E7%9A%84%E6%88%91"
+    },
+    {
       "albumName": "太平盛世",
       "artistName": "陶喆",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7d138f697957886fcb656b204c75b1d9.jpg",
       "url": "https://www.last.fm/music/%E9%99%B6%E5%96%86/%E5%A4%AA%E5%B9%B3%E7%9B%9B%E4%B8%96"
-    },
-    {
-      "albumName": "Get Rich or Die Tryin'",
-      "artistName": "50 Cent",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/0df88df2ca9e67709d7a73a3553db7a1.jpg",
-      "url": "https://www.last.fm/music/50+Cent/Get+Rich+or+Die+Tryin%27"
     },
     {
       "albumName": "You're The Only One (Remastered 2019)",
@@ -1294,18 +1348,6 @@
       "artistName": "王力宏",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c3f804465906179e692837f227561c6c.jpg",
       "url": "https://www.last.fm/music/%E7%8E%8B%E5%8A%9B%E5%AE%8F/%E5%8D%81%E5%85%AB%E8%88%AC%E6%AD%A6%E8%89%BA"
-    },
-    {
-      "albumName": "The Black Parade",
-      "artistName": "My Chemical Romance",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7675defb2787ce67cd030081eb8ff77c.png",
-      "url": "https://www.last.fm/music/My+Chemical+Romance/The+Black+Parade"
-    },
-    {
-      "albumName": "Loud",
-      "artistName": "Rihanna",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/cee5b95414736f9297b94e11d3b9976b.png",
-      "url": "https://www.last.fm/music/Rihanna/Loud"
     },
     {
       "albumName": "Radio In My Head (For the Love of Radiohead)",
@@ -1360,18 +1402,6 @@
       "artistName": "Jolin蔡依林",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/6baa3dfd9388f20056bb9a2ee3c70e0f.jpg",
       "url": "https://www.last.fm/music/Jolin%E8%94%A1%E4%BE%9D%E6%9E%97/%E7%9C%8B%E6%88%9172%E5%8F%98"
-    },
-    {
-      "albumName": "Hybrid Theory (Bonus Edition)",
-      "artistName": "Linkin Park",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/56989cdb558cb4f6609eb906029399d8.jpg",
-      "url": "https://www.last.fm/music/Linkin+Park/Hybrid+Theory+(Bonus+Edition)"
-    },
-    {
-      "albumName": "A Night At The Opera (Deluxe Remastered Version)",
-      "artistName": "Queen",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/0100143620622a439c981a960394d83e.jpg",
-      "url": "https://www.last.fm/music/Queen/A+Night+At+The+Opera+(Deluxe+Remastered+Version)"
     },
     {
       "albumName": "Sgt. Pepper's Lonely Hearts Club Band (Remastered)",
@@ -1480,36 +1510,6 @@
       "artistName": "周杰倫",
       "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c1f063b7daa10e10aaa6f383180ac579.jpg",
       "url": "https://www.last.fm/music/%E5%91%A8%E6%9D%B0%E5%80%AB/%E6%9D%B0%E5%80%AB"
-    },
-    {
-      "albumName": "崇拜",
-      "artistName": "梁靜茹",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/c17e24f376ef474e58d0d72e7615293c.jpg",
-      "url": "https://www.last.fm/music/%E6%A2%81%E9%9D%9C%E8%8C%B9/%E5%B4%87%E6%8B%9C"
-    },
-    {
-      "albumName": "野蠻遊戲",
-      "artistName": "蔡依林",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/dadb549033a61d049bb649e2e26197fc.jpg",
-      "url": "https://www.last.fm/music/%E8%94%A1%E4%BE%9D%E6%9E%97/%E9%87%8E%E8%A0%BB%E9%81%8A%E6%88%B2"
-    },
-    {
-      "albumName": "U 87",
-      "artistName": "陳奕迅",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/7c80e472a9e315536bbc5d984b0d5569.jpg",
-      "url": "https://www.last.fm/music/%E9%99%B3%E5%A5%95%E8%BF%85/U+87"
-    },
-    {
-      "albumName": "X&Y",
-      "artistName": "Coldplay",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/38761f082a1b02ac535785fafc7964cc.jpg",
-      "url": "https://www.last.fm/music/Coldplay/X&Y"
-    },
-    {
-      "albumName": "La La Land (Original Motion Picture Soundtrack)",
-      "artistName": "Emma Stone",
-      "imageUrl": "https://lastfm-img.freetls.fastly.net/i/u/300x300/b08b8808772ac9f86da4b140ac728bf4.jpg",
-      "url": "https://www.last.fm/music/Emma+Stone/La+La+Land+(Original+Motion+Picture+Soundtrack)"
     }
   ]
 }
